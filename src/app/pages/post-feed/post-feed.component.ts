@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePostComponent } from 'src/app/tools/create-post/create-post.component';
 import { FirebaseTSFirestore, Limit, OrderBy, Where } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+import { PostService } from 'src/services/post.service';
 @Component({
   selector: 'app-post-feed',
   templateUrl: './post-feed.component.html',
@@ -10,7 +11,7 @@ import { FirebaseTSFirestore, Limit, OrderBy, Where } from 'firebasets/firebaset
 export class PostFeedComponent implements OnInit {
   firestore = new FirebaseTSFirestore();
   posts: PostData [] = [];
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private postService: PostService) { }
 
   ngOnInit(): void {
     this.getPosts();

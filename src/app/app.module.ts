@@ -18,6 +18,8 @@ import { PostFeedComponent } from './pages/post-feed/post-feed.component';
 import { CreatePostComponent } from './tools/create-post/create-post.component';
 import { PostComponent } from './tools/post/post.component';
 import { ReplyComponent } from './tools/reply/reply.component';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 
 
 @NgModule({
@@ -42,10 +44,14 @@ import { ReplyComponent } from './tools/reply/reply.component';
     MatDialogModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [
+    FirebaseTSFirestore,
+    FirebaseTSAuth
+
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
   constructor(){
     FirebaseTSApp.init(environment.firebaseConfig);
   }
