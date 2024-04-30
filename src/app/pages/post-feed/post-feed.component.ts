@@ -51,5 +51,6 @@ export interface PostData {
   creatorId: string;
   imageUrl?: string;
   postId: string;
-  likes: number;
+  pdfUrl: string; // Add the PDF file URL property
+  pdfName: string;
 }

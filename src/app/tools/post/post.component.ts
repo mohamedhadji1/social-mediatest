@@ -1,9 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { PostData } from 'src/app/pages/post-feed/post-feed.component';
 import { FirebaseTSFirestore} from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ReplyComponent } from '../reply/reply.component';
 import { PostService } from 'src/services/post.service';
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+
+    type Likes = {
+      [userId: string]: number | undefined;
+    };
 
 @Component({
   selector: 'app-post',
@@ -14,13 +19,21 @@ export class PostComponent implements OnInit {
   @Input() postData: PostData = {} as PostData;
   creatorName: string = '';
   creatorDescription: string = '';
-  posts: any[] = [];
-  firestore = new FirebaseTSFirestore();
+  likesCount: number = 0;
+  currentUserId: string | null = null;
+  likedByCurrentUser: boolean = false; // Added to track whether the current user has liked the post
 
-  constructor(private dialog: MatDialog, private postService: PostService) {}
+  likes: Likes = {};
+  constructor(
+    private dialog: MatDialog,
+    private postService: PostService,
+    private firestore: FirebaseTSFirestore
+  ) {}
 
   ngOnInit(): void {
     this.getCreatorInfo();
+    this.getLikesCount(); // Fetch initial like count
+    this.currentUserId = this.getCurrentUserId();
   }
 
   onReplyClick() {
@@ -45,36 +58,71 @@ export class PostComponent implements OnInit {
   likePost(postId: string): void {
     console.log('Like clicked for post ID:', postId);
 
+    // Check if the user already liked the post
+    if (!this.currentUserId || this.likes[this.currentUserId] === 1) {
+      console.log('User already liked the post');
+      return;
+    }
+
     // Simulate the like functionality
     this.postService.likePost(postId)
       .then(() => {
         console.log('Post liked successfully:', postId);
         // Increment the like count
-        this.postData.likes = (this.postData.likes || 0) + 1;
+        this.likes[this.currentUserId!] = 1;
+        this.likesCount++;
       })
       .catch((error) => {
         console.error('Error liking post:', error);
-        // Handle error
       });
-}
+  }
 
   unlikePost(postId: string): void {
     console.log('Unlike clicked for post ID:', postId);
+
+    // Check if the user already unliked the post
+    if (!this.currentUserId || this.likes[this.currentUserId] !== 1) {
+      console.log('User already unliked the post');
+      return;
+    }
 
     // Simulate the unlike functionality
     this.postService.unlikePost(postId)
       .then(() => {
         console.log('Post unliked successfully:', postId);
         // Decrement the like count
-        this.postData.likes = (this.postData.likes || 0) - 1;
+        this.likes[this.currentUserId!] = 0;
+        this.likesCount--;
       })
       .catch((error) => {
         console.error('Error unliking post:', error);
-        // Handle error
       });
   }
-
-  getLikesCount(likes: any): number {
-    return typeof likes === 'number' ? likes : 0;
+  getCurrentUserId(): string | null {
+    const userId = new FirebaseTSAuth().getAuth().currentUser?.uid;
+    return userId || null;
   }
+  getLikesCount(): void {
+    const likeRef = [`Posts`, this.postData.postId, `likes`];
+    this.firestore.getCollection({
+      path: likeRef,
+      where: [], // Add an empty where parameter
+      onComplete: snapshot => {
+        this.likesCount = snapshot.size;
+      },
+      onFail: error => {
+        console.error('Error fetching likes:', error);
+      }
+    });
+  }
+  getFileName(url: string): string {
+    const parts = url.split('/');
+    return parts[parts.length - 1];
+  }
+  downloadPdf(pdfLink: HTMLAnchorElement): void {
+    if (pdfLink) {
+      pdfLink.click();
+    }
+  }
+
 }

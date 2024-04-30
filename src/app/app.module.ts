@@ -42,7 +42,8 @@ import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
     MatBottomSheetModule,
     MatCardModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+
   ],
   providers: [
     FirebaseTSFirestore,

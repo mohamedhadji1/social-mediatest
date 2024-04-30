@@ -4,7 +4,7 @@ import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFi
 import { FirebaseTSStorage } from 'firebasets/firebasetsStorage/firebaseTSStorage';
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { MatDialogRef } from '@angular/material/dialog';
-import { timestamp } from 'rxjs';
+
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
@@ -13,11 +13,15 @@ import { timestamp } from 'rxjs';
 export class CreatePostComponent implements OnInit{
 
   selectedImageFile: File | null = null;
+  selectedFile: File | null = null;
+  pdfFileName: string | null = null; // New attribute for storing the PDF file name
   auth = new FirebaseTSAuth();
   firestore = new FirebaseTSFirestore();
   storage = new FirebaseTSStorage();
+
   constructor(private dialog: MatDialogRef<CreatePostComponent>) {
     this.selectedImageFile = null;
+    this.selectedFile = null;
   }
 
   ngOnInit(): void {
@@ -51,9 +55,10 @@ export class CreatePostComponent implements OnInit{
                 comment: comment,
                 creatorId: this.auth.getAuth().currentUser?.uid,
                 imageUrl: downloadUrl,
+                pdfName: this.pdfFileName, // Save the PDF file name
                 timestamp: FirebaseTSApp.getFirestoreTimestamp()
               },
-              onComplete: (docId) => {
+              onComplete: () => {
                 this.dialog.close();
               }
             }
@@ -69,34 +74,27 @@ export class CreatePostComponent implements OnInit{
         data: {
           comment: comment,
           creatorId: this.auth.getAuth().currentUser?.uid,
+          pdfName: this.pdfFileName, // Save the PDF file name
           timestamp: FirebaseTSApp.getFirestoreTimestamp()
         },
-        onComplete: (docId) => {
+        onComplete: () => {
           this.dialog.close();
         }
       }
     );
   }
-onPhotoSelected(photoSelector: HTMLInputElement) {
-  // Check if files property exists and has at least one file
-  if (photoSelector.files && photoSelector.files.length > 0) {
+
+  onPhotoSelected(photoSelector: HTMLInputElement) {
+    if (photoSelector.files && photoSelector.files.length > 0) {
       this.selectedImageFile = photoSelector.files[0];
-
-      let fileReader = new FileReader();
-      fileReader.readAsDataURL(this.selectedImageFile);
-
-      fileReader.addEventListener(
-          "loadend",
-          ev => {
-              // Check if result property is not null
-              if (fileReader.result) {
-                  let readableString = fileReader.result.toString();
-                  let postPreviewImage = document.getElementById("post-preview-image") as HTMLImageElement;
-                  postPreviewImage.src = readableString;
-              }
-          }
-      );
+    }
   }
-}
 
+  onFileSelected(event: Event) {
+    const fileSelector = event.target as HTMLInputElement;
+    if (fileSelector.files && fileSelector.files.length > 0) {
+      this.selectedFile = fileSelector.files[0];
+      this.pdfFileName = this.selectedFile.name; // Set the PDF file name
+    }
+  }
 }

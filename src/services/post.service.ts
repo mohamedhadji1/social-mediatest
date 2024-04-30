@@ -1,59 +1,58 @@
 import { Injectable } from '@angular/core';
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
-import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor(private firestore: FirebaseTSFirestore, private firebaseAuth: FirebaseTSAuth) { }
+  constructor(
+    private firestore: FirebaseTSFirestore,
+    private firebaseAuth: FirebaseTSAuth
+  ) { }
 
-  // Function to handle liking a post
   async likePost(postId: string): Promise<void> {
-    const userId = this.firebaseAuth.getAuth().currentUser?.uid; // Get current user's ID
+    const userId = this.firebaseAuth.getAuth().currentUser?.uid;
     if (!userId) {
       throw new Error('User is not authenticated');
     }
 
-    // Check if the user has already liked the post
-    const likeRef = await this.firestore.getDocument({
-      path: [`Posts`, postId, `likes`, userId]
-    });
+    const likeRef = [`Posts`, postId, `likes`, userId];
 
-    if (!likeRef.exists) {
-      // User hasn't liked the post yet, add the like
-      await this.firestore.create({
-        path: [`Posts`, postId, `likes`, userId],
-        data: {
-          likedAt: FirebaseTSApp.getFirestoreTimestamp()
-        }
-      });
-    } else {
-      throw new Error('User has already liked the post');
+    try {
+      const likeSnapshot = await this.firestore.getDocument({ path: likeRef });
+      if (!likeSnapshot.exists) {
+        await this.firestore.create({
+          path: likeRef,
+          data: {
+            likedAt: FirebaseTSApp.getFirestoreTimestamp()
+          }
+        });
+      }
+    } catch (error) {
+      console.error('Error liking post:', error);
+      throw error;
     }
   }
 
-  // Function to handle unliking a post
   async unlikePost(postId: string): Promise<void> {
-    const userId = this.firebaseAuth.getAuth().currentUser?.uid; // Get current user's ID
+    const userId = this.firebaseAuth.getAuth().currentUser?.uid;
     if (!userId) {
       throw new Error('User is not authenticated');
     }
 
-    // Check if the user has liked the post
-    const likeRef = await this.firestore.getDocument({
-      path: [`Posts`, postId, `likes`, userId]
-    });
+    const likeRef = [`Posts`, postId, `likes`, userId];
 
-    if (likeRef.exists) {
-      // User has liked the post, remove the like
-      await this.firestore.delete({
-        path: [`Posts`, postId, `likes`, userId]
-      });
-    } else {
-      throw new Error('User has not liked the post');
+    try {
+      const likeSnapshot = await this.firestore.getDocument({ path: likeRef });
+      if (likeSnapshot.exists) {
+        await this.firestore.delete({ path: likeRef });
+      }
+    } catch (error) {
+      console.error('Error unliking post:', error);
+      throw error;
     }
   }
 }
