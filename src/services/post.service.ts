@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+import { PostData } from 'src/app/pages/post-feed/post-feed.component';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,35 @@ export class PostService {
     } catch (error) {
       console.error('Error unliking post:', error);
       throw error;
+    }
+  }
+  async deletePost(postId: string): Promise<void> {
+    try {
+      await this.firestore.delete({ path: ['Posts', postId] });
+    } catch (error) {
+      throw new Error('Error deleting post: ');
+    }
+  }
+
+  async updatePost(post: PostData): Promise<void> {
+    try {
+      await this.firestore.update({
+        path: ['Posts', post.postId],
+        data: post
+      });
+    } catch (error) {
+      console.error('Error updating post:', error);
+      throw error;
+    }
+  }
+  async deleteComment(postId: string, commentId: string): Promise<void> {
+    try {
+      console.log('Deleting comment:', postId, commentId);
+      await this.firestore.delete({ path: ['Posts', postId, 'PostComments', commentId] });
+      console.log('Comment deleted successfully.');
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+      throw new Error('Error deleting comment: ' + error);
     }
   }
 }

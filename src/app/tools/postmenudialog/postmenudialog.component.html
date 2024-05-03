@@ -1,0 +1,15 @@
+<h2 mat-dialog-title class="dialog-title">Post Menu</h2>
+<div mat-dialog-content class="dialog-content">
+  <p class="options-title">Options for post:</p>
+  <ul class="options-list">
+    <li>
+      <mat-icon class="option-icon update" (click)="onUpdatePost(data)">edit</mat-icon>
+      <span class="option-label" (click)="onUpdatePost(data)">Update</span>
+    </li>
+    <hr class="separator">
+    <li>
+      <mat-icon class="option-icon delete" (click)="onDeletePost(data.postId)">delete</mat-icon>
+      <span class="option-label" (click)="onDeletePost(data.postId)">Delete</span>
+    </li>
+  </ul>
+</div>

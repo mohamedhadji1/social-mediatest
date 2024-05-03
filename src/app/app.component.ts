@@ -24,8 +24,7 @@ export class AppComponent {
         this.auth.checkSignInState(
           {
             whenSignedIn: user => {
-
-
+              console.log('User signed in:', user.uid, user.email);
             },
             whenSignedOut: user => {
               AppComponent.userDocument??"";

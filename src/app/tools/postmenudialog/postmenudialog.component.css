@@ -1,0 +1,44 @@
+.dialog-title {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.dialog-content {
+  color: #666;
+}
+
+.options-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.options-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.option-icon {
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 8px;
+  color: #2196f3;
+}
+
+.option-label {
+  cursor: pointer;
+  transition: color 0.3s ease, opacity 0.3s ease; /* Adding transition effect for color and opacity change */
+  opacity: 0.5; /* Initial opacity */
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 8px 0;
+}
+
+.option-icon:hover,
+.option-label:hover {
+  color: #2196f3; /* Blue color for hover */
+  opacity: 1; /* Increase opacity on hover */
+}

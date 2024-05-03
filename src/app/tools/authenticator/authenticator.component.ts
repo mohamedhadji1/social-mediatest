@@ -10,24 +10,26 @@ import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 export class AuthenticatorComponent implements OnInit {
   state = AuthenticatorCompState.LOGIN;
   firebasetsAuth: FirebaseTSAuth;
-  constructor(private bottomSheetRef: MatBottomSheetRef) { 
+  constructor(private bottomSheetRef: MatBottomSheetRef) {
     this.firebasetsAuth = new FirebaseTSAuth();
   }
 
   ngOnInit(): void {
   }
 
-  onResetClick(resetEmail: HTMLInputElement){
+  onResetClick(resetEmail: HTMLInputElement) {
     let email = resetEmail.value;
-    if(this.isNotEmpty(email)) {
-      this.firebasetsAuth.sendPasswordResetEmail(
-        {
-          email: email,
-          onComplete: (err) => {
+    if (this.isNotEmpty(email)) {
+      this.firebasetsAuth.sendPasswordResetEmail({
+        email: email,
+        onComplete: (err) => {
+          if (err) {
+            alert(err);
+          } else {
             this.bottomSheetRef.dismiss();
           }
         }
-      );
+      });
     }
   }
 
@@ -67,7 +69,7 @@ export class AuthenticatorComponent implements OnInit {
 
     if(
       this.isNotEmpty(email) &&
-      this.isNotEmpty(password) && 
+      this.isNotEmpty(password) &&
       this.isNotEmpty(confirmPassword) &&
       this.isAMatch(password, confirmPassword)
     ){

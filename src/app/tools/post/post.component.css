@@ -3,3 +3,11 @@
     cursor: pointer;
 }
 @import '~@fortawesome/fontawesome-free/css/all.css';
+
+
+
+.menu-icon {
+  font-size: 24px;
+  color: rgb(92, 91, 91);
+  cursor: pointer;
+}

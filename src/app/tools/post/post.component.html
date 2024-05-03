@@ -1,7 +1,10 @@
 <mat-card>
-  <mat-card-header>
+  <mat-card-header style="display: flex;justify-content: space-between;">
     <mat-card-title>{{ creatorName }}</mat-card-title>
     <mat-card-subtitle>{{ creatorDescription }}</mat-card-subtitle>
+    <div class="icon">
+      <mat-icon class="menu-icon" #menuIcon *ngIf="postData.creatorId === currentUserId" (click)="openMenu(postData)">more_horiz</mat-icon>
+    </div>
   </mat-card-header>
   <img mat-card-image [src]="postData.imageUrl">
   <mat-card-content>
@@ -9,6 +12,7 @@
     <div *ngIf="postData.pdfName">
       <span>PDF: </span>
       <a [href]="postData.pdfUrl" >{{ postData.pdfName }}</a>
+
     </div>
   </mat-card-content>
   <mat-card-actions>

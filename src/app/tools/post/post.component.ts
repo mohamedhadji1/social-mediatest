@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ReplyComponent } from '../reply/reply.component';
 import { PostService } from 'src/services/post.service';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { PostmenudialogComponent } from '../postmenudialog/postmenudialog.component';
 
     type Likes = {
       [userId: string]: number | undefined;
@@ -124,5 +125,17 @@ export class PostComponent implements OnInit {
       pdfLink.click();
     }
   }
+  openMenu(postData: PostData) {
+    const dialogRef = this.dialog.open(PostmenudialogComponent, {
+      data: postData
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        // Handle delete action
+      } else if (result === 'update') {
+        // Handle update action
+      }
+    });
+  }
 }
