@@ -1,0 +1,21 @@
+<h2 mat-dialog-title class="dialog-title">Update Post</h2>
+<div mat-dialog-content class="dialog-content">
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea id="comment" [(ngModel)]="data.comment" name="comment" class="form-control" rows="4"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="imageFile">Upload Image</label>
+    <input id="imageFile" type="file" (change)="onPhotoSelected($event)" accept="image/*" class="form-control-file">
+    <img *ngIf="imageUrl" [src]="imageUrl" class="preview-image" id="post-preview-image" />
+  </div>
+  <div class="form-group">
+    <label for="pdfFile">Upload PDF</label>
+    <input id="pdfFile" type="file" (change)="onPdfSelected($event)" accept=".pdf" class="form-control-file">
+    <span *ngIf="pdfUrl">{{ pdfUrl }}</span>
+  </div>
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="onUpdatePost(data)">Update</button>
+    <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+  </div>
+</div>

@@ -7,7 +7,9 @@ import { PostFeedComponent } from './pages/post-feed/post-feed.component';
 const routes: Routes = [
   {path: "", component: HomeComponent},
   {path: "emailVerification", component: EmailVerificationComponent},
-  {path: "postfeed", component: PostFeedComponent},
+  //{ path: 'gestion-chercheur', component: GestionChercheurComponent },
+  //{ path: 'gestion-projets', component: GestionProjetsComponent },
+  { path: 'postfeed', component: PostFeedComponent },
   {path: "**", component: HomeComponent}
 ];
 

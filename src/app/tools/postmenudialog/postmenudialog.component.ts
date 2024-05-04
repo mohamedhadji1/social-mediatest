@@ -6,6 +6,7 @@ import { PostService } from 'src/services/post.service';
 import { CreatePostComponent } from '../create-post/create-post.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
+import { UpdatePostDialogComponent } from '../update-post-dialog/update-post-dialog.component';
 
 @Component({
   selector: 'app-postmenudialog',
@@ -51,28 +52,21 @@ export class PostmenudialogComponent {
       }
     });
   }
-
   onUpdatePost(post: PostData): void {
-    const dialogRef = this.dialog.open(CreatePostComponent, {
-      data: { post, isUpdate: true }
+    const dialogRef = this.dialog.open(UpdatePostDialogComponent, {
+      data: post
     });
 
-    dialogRef.afterClosed().subscribe(updatedPost => {
-      if (updatedPost) {
-        this.postService.updatePost(updatedPost)
-          .then(() => {
-            this.snackBar.open('Post updated successfully', 'Close', { duration: 3000 });
-            // Update the post in the UI
-            const index = this.posts.findIndex(p => p.postId === updatedPost.postId);
-            if (index !== -1) {
-              this.posts[index] = updatedPost;
-            }
-          })
-          .catch(error => {
-            console.error('Error updating post:', error);
-            this.snackBar.open('Error updating post', 'Close', { duration: 3000 });
-          });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'updated') {
+        // Handle any actions after the post is successfully updated
+        console.log('Post updated successfully');
+      } else if (result === 'canceled') {
+        // Handle any actions if the user cancels the update operation
+        console.log('Update operation canceled');
+      } else {
+        // Handle any other actions if needed
       }
     });
-  }
+}
 }

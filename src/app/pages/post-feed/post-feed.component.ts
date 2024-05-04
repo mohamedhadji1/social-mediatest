@@ -23,7 +23,7 @@ export class PostFeedComponent implements OnInit {
   onCreatePostClick(){
     this.dialog.open(CreatePostComponent);
   }
-  
+
   getPosts(){
     this.firestore.getCollection(
       {
@@ -52,8 +52,8 @@ export class PostFeedComponent implements OnInit {
 export interface PostData {
   comment: string;
   creatorId: string;
-  imageUrl?: string;
+  imageUrl: string;
   postId: string;
-  pdfUrl: string; // Add the PDF file URL property
+  pdfUrl: string;
   pdfName: string;
 }

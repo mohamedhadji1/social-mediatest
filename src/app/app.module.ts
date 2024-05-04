@@ -23,6 +23,14 @@ import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { PostmenudialogComponent } from './tools/postmenudialog/postmenudialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConfirmationDialogComponent } from './tools/confirmation-dialog/confirmation-dialog.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UpdatePostDialogComponent } from './tools/update-post-dialog/update-post-dialog.component';
+
+
 
 
 @NgModule({
@@ -37,7 +45,9 @@ import { ConfirmationDialogComponent } from './tools/confirmation-dialog/confirm
     PostComponent,
     ReplyComponent,
     PostmenudialogComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    SidebarComponent,
+    UpdatePostDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,8 +58,12 @@ import { ConfirmationDialogComponent } from './tools/confirmation-dialog/confirm
     MatCardModule,
     MatDialogModule,
     MatIconModule,
-    MatSnackBarModule
-
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [
     FirebaseTSFirestore,
