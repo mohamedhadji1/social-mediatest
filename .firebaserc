@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "ExploraLab": "testf-df50a",
+    "default": "testf-df50a"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

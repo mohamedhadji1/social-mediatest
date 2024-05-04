@@ -1,0 +1,27 @@
+<div class="profile-card">
+  <div class="profile-header">
+    <img *ngIf="userProfileData?.imageUrl" [src]="userProfileData?.imageUrl" alt="Profile Photo" class="profile-image animate__animated animate__fadeInDown">
+    <div class="profile-info animate__animated animate__fadeInRight">
+      <h2 class="profile-name">{{ userProfileData?.email }}</h2>
+      <p class="profile-title">first name : {{ userProfileData?.firstName }}</p>
+      <p class="profile-university">specialization : {{ userProfileData?.specialization }}</p>
+    </div>
+  </div>
+  <div class="profile-body animate__animated animate__fadeInUp">
+    <div class="profile-details">
+      <div class="detail-item">
+        <i class="fas fa-envelope"></i>
+        <span>university : {{ userProfileData?.university }}</span>
+      </div>
+      <div class="detail-item">
+        <i class="fas fa-phone"></i>
+        <span>phone : {{ userProfileData?.phone }}</span>
+      </div>
+      <div class="detail-item">
+        <i class="fas fa-building"></i>
+        <span>lab : {{ userProfileData?.lab }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />

@@ -29,6 +29,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdatePostDialogComponent } from './tools/update-post-dialog/update-post-dialog.component';
+import { UserProfileComponent } from './tools/user-profile/user-profile.component';
 
 
 
@@ -47,7 +48,8 @@ import { UpdatePostDialogComponent } from './tools/update-post-dialog/update-pos
     PostmenudialogComponent,
     ConfirmationDialogComponent,
     SidebarComponent,
-    UpdatePostDialogComponent
+    UpdatePostDialogComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

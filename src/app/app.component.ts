@@ -48,7 +48,7 @@ export class AppComponent {
   }
   getUsername(){
     try {
-      return AppComponent.userDocument.publicName;
+      return AppComponent.userDocument.lastName;
     } catch (err) {
       return "Anonymous"
     }
@@ -99,4 +99,11 @@ export interface UserDocument {
   description: string;
   userId: string;
   imageUrl:string;
+  firstName: string;
+  lastName: string;
+  university: string;
+  email: string;
+  specialization: string;
+  lab: string;
+  phone: string;
 }

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-  @Input() user: UserDocument = { publicName: '', description: '', userId: '', imageUrl: '' }; // Initialize the user property
+  //@Input() user: UserDocument = { publicName: '', description: '', userId: '', imageUrl: '' }; // Initialize the user property
 
   opened: boolean = false;
   loadedUser: UserDocument | undefined;
@@ -21,13 +21,13 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.user) {
-      this.getCreatorInfo(this.user.userId);
+   /* if (this.user) {
+      //this.getCreatorInfo(this.user.userId);
       console.log(this.userImageUrl)
-    }
+    }*/
   }
 
-  getCreatorInfo(creatorId: string) {
+  /*getCreatorInfo(creatorId: string) {
     this.firestore.getDocument({
       path: ['Users', creatorId],
       onComplete: (result) => {
@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit {
         }
       },
     });
-  }
+  }*/
 
   toggleSidebar() {
     this.opened = !this.opened;

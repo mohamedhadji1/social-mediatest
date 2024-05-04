@@ -18,7 +18,6 @@ type Likes = {
   styleUrls: ['./post.component.css'],
 })
 export class PostComponent implements OnInit {
-
   @Input() postData: PostData = {} as PostData;
   creatorName: string = '';
   creatorDescription: string = '';
@@ -84,19 +83,14 @@ export class PostComponent implements OnInit {
 
   unlikePost(postId: string): void {
     console.log('Unlike clicked for post ID:', postId);
-
-    // Check if the user already unliked the post
     if (!this.currentUserId || this.likes[this.currentUserId] !== 1) {
       console.log('User already unliked the post');
       return;
     }
-
-    // Simulate the unlike functionality
     this.postService
       .unlikePost(postId)
       .then(() => {
         console.log('Post unliked successfully:', postId);
-        // Decrement the like count
         this.likes[this.currentUserId!] = 0;
         this.likesCount--;
       })
