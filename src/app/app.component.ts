@@ -53,6 +53,7 @@ export class AppComponent {
       return "Anonymous"
     }
   }
+
   getUserProfile(){
     return new Promise<number>(
       (resolved, rejected) => {
@@ -65,7 +66,7 @@ export class AppComponent {
               this.userHasProfile = result.exists;
               AppComponent.userDocument.userId  = this.auth.getAuth().currentUser?.uid??"";
               if(this.userHasProfile) {
-                this.router.navigate(["postfeed"]);
+                //this.router.navigate(["postfeed"]);
                 resolved(1);
               } else {
                 resolved(0);
@@ -97,4 +98,5 @@ export interface UserDocument {
   publicName: string;
   description: string;
   userId: string;
+  imageUrl:string;
 }

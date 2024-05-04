@@ -1,38 +1,39 @@
-<nav class="sidebar">
-  <div class="profile">
-    <img src="assets/user.png" alt="Profile Image">
-    <span class="username">John Doe</span>
-  </div>
-  <a href="#" class="logo">ExploraLab</a>
+  <nav class="sidebar">
+    <div class="profile" *ngIf="user">
+      <img [src]="user.imageUrl" alt="Profile Image">
+      <span class="username" >{{ user.publicName }}</span>
+    </div>
+    <a href="#" class="logo">ExploraLab</a>
 
-  <div class="menu-content">
-    <ul class="menu-items">
-      <div class="menu-title">Dashboard</div>
-      <li class="item">
-        <a routerLink="/gestion-chercheur"><i class="fas fa-search"></i> Gestion Chercheur</a>
-      </li>
+    <div class="menu-content">
+      <ul class="menu-items">
+        <div class="menu-title">Dashboard</div>
 
-      <li class="item">
-        <a routerLink="/gestion-projet"><i class="fas fa-project-diagram"></i> Gestion Projet</a>
-      </li>
+        <li class="item">
+          <a routerLink="/gestion-chercheur"><i class="fas fa-search"></i> Gestion Chercheur</a>
+        </li>
 
-      <li class="item">
-        <a routerLink="/gestion-event"><i class="fas fa-calendar-alt"></i> Gestion Event</a>
-      </li>
+        <li class="item">
+          <a routerLink="/gestion-projet"><i class="fas fa-project-diagram"></i> Gestion Projet</a>
+        </li>
 
-      <li class="item">
-        <a routerLink="/postfeed"><i class="fas fa-newspaper"></i> Gestion Post</a>
-      </li>
+        <li class="item">
+          <a routerLink="/gestion-event"><i class="fas fa-calendar-alt"></i> Gestion Event</a>
+        </li>
 
-      <div class="separator"></div>
+        <li class="item">
+          <a routerLink="/postfeed"><i class="fas fa-newspaper"></i> Gestion Post</a>
+        </li>
 
-      <li class="item">
-        <a href="#"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <div class="separator"></div>
 
-<nav class="navbar">
-  <i class="fa-solid fa-bars" id="sidebar-close"></i>
-</nav>
+        <li class="item">
+          <a href="#"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <nav class="navbar">
+    <i class="fa-solid fa-bars" id="sidebar-close"></i>
+  </nav>

@@ -1,29 +1,31 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { PostData } from 'src/app/pages/post-feed/post-feed.component';
-import { FirebaseTSFirestore} from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ReplyComponent } from '../reply/reply.component';
 import { PostService } from 'src/services/post.service';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { PostmenudialogComponent } from '../postmenudialog/postmenudialog.component';
+import { UserDocument } from 'src/app/app.component';
 
-    type Likes = {
-      [userId: string]: number | undefined;
-    };
+type Likes = {
+  [userId: string]: number | undefined;
+};
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  styleUrls: ['./post.component.css'],
 })
 export class PostComponent implements OnInit {
+
   @Input() postData: PostData = {} as PostData;
   creatorName: string = '';
   creatorDescription: string = '';
   likesCount: number = 0;
   currentUserId: string | null = null;
   likedByCurrentUser: boolean = false; // Added to track whether the current user has liked the post
-
+  loadedUser: UserDocument | undefined;
   likes: Likes = {};
   constructor(
     private dialog: MatDialog,
@@ -43,16 +45,17 @@ export class PostComponent implements OnInit {
 
   getCreatorInfo() {
     this.firestore.getDocument({
-      path: ["Users", this.postData.creatorId],
-      onComplete: result => {
+      path: ['Users', this.postData.creatorId],
+      onComplete: (result) => {
         if (result && result.data()) {
+          this.loadedUser = result.data() as UserDocument;
           let userDocument = result.data();
           if (userDocument) {
             this.creatorName = userDocument['publicName'];
             this.creatorDescription = userDocument['description'];
           }
         }
-      }
+      },
     });
   }
 
@@ -66,7 +69,8 @@ export class PostComponent implements OnInit {
     }
 
     // Simulate the like functionality
-    this.postService.likePost(postId)
+    this.postService
+      .likePost(postId)
       .then(() => {
         console.log('Post liked successfully:', postId);
         // Increment the like count
@@ -88,7 +92,8 @@ export class PostComponent implements OnInit {
     }
 
     // Simulate the unlike functionality
-    this.postService.unlikePost(postId)
+    this.postService
+      .unlikePost(postId)
       .then(() => {
         console.log('Post unliked successfully:', postId);
         // Decrement the like count
@@ -108,12 +113,12 @@ export class PostComponent implements OnInit {
     this.firestore.getCollection({
       path: likeRef,
       where: [], // Add an empty where parameter
-      onComplete: snapshot => {
+      onComplete: (snapshot) => {
         this.likesCount = snapshot.size;
       },
-      onFail: error => {
+      onFail: (error) => {
         console.error('Error fetching likes:', error);
-      }
+      },
     });
   }
   getFileName(url: string): string {
@@ -127,10 +132,10 @@ export class PostComponent implements OnInit {
   }
   openMenu(postData: PostData) {
     const dialogRef = this.dialog.open(PostmenudialogComponent, {
-      data: postData
+      data: postData,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result === 'delete') {
         // Handle delete action
       } else if (result === 'update') {
