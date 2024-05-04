@@ -2,6 +2,7 @@ import { UserDocument } from 'src/app/app.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,12 +17,14 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     private firestore: FirebaseTSFirestore,
-    private auth: FirebaseTSAuth
+    private auth: FirebaseTSAuth,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     if (this.user) {
       this.getCreatorInfo(this.user.userId);
+      console.log('Image URL:', this.user.imageUrl);
     }
   }
 
@@ -37,6 +40,7 @@ export class SidebarComponent implements OnInit {
             userId: userData.userId,
             imageUrl: userData.imageUrl
           };
+
         }
       },
     });
@@ -44,5 +48,10 @@ export class SidebarComponent implements OnInit {
 
   toggleSidebar() {
     this.opened = !this.opened;
+  }
+  logout() {
+    this.auth.signOut().then(() => {
+      //this.router.navigate(['/login']);
+    });
   }
 }
