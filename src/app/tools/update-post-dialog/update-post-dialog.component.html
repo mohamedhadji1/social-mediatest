@@ -1,21 +1,31 @@
-<h2 mat-dialog-title class="dialog-title">Update Post</h2>
-<div mat-dialog-content class="dialog-content">
-  <div class="form-group">
-    <label for="comment">Comment</label>
-    <textarea id="comment" [(ngModel)]="data.comment" name="comment" class="form-control" rows="4"></textarea>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Update Post</mat-card-title>
+  </mat-card-header>
+  <div>
+    <textarea id="comment" [(ngModel)]="data.comment" placeholder="Type Message..."></textarea>
   </div>
-  <div class="form-group">
-    <label for="imageFile">Upload Image</label>
-    <input id="imageFile" type="file" (change)="onPhotoSelected($event)" accept="image/*" class="form-control-file">
-    <img *ngIf="imageUrl" [src]="imageUrl" class="preview-image" id="post-preview-image" />
+  <div *ngIf="imageUrl" id="post-preview">
+    <img id="post-preview-image" [src]="imageUrl" />
   </div>
-  <div class="form-group">
-    <label for="pdfFile">Upload PDF</label>
-    <input id="pdfFile" type="file" (change)="onPdfSelected($event)" accept=".pdf" class="form-control-file">
-    <span *ngIf="pdfUrl">{{ pdfUrl }}</span>
+  <div *ngIf="pdfUrl" id="post-preview">
+    <i class="material-icons pdf-preview-icon">picture_as_pdf</i>
+    <span>{{ pdfUrl }}</span>
   </div>
-  <div class="button-container">
-    <button mat-raised-button color="primary" (click)="onUpdatePost(data)">Update</button>
-    <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
-  </div>
-</div>
+  <mat-card-actions align="end">
+    <button mat-button color="primary">
+      <label for="image-upload">
+        <input #imageSelector (change)="onPhotoSelected($event)" id="image-upload" type="file" accept="image/*" />
+        <mat-icon>insert_photo</mat-icon>
+      </label>
+    </button>
+    <button mat-button color="primary">
+      <label for="pdf-upload">
+        <input #pdfSelector (change)="onPdfSelected($event)" id="pdf-upload" type="file" accept=".pdf" />
+        <mat-icon>picture_as_pdf</mat-icon>
+      </label>
+    </button>
+    <button (click)="onUpdatePost(data)" mat-flat-button color="primary">Update</button>
+    <button (click)="onCancel()" mat-flat-button color="warn">Cancel</button>
+  </mat-card-actions>
+</mat-card>
