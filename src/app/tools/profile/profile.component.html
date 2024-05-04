@@ -1,14 +1,30 @@
 <div id="profile" [ngClass]="{'active' : show,'idle':!show}">
   <div id="profile-content">
-    <input #nameInput placeholder="Name">
-    <textarea #descriptionInput placeholder="Description"></textarea>
-    <div class="file-input-container">
+    <div class="form-group">
+      <input #firstNameInput class="form-control" placeholder="Nom">
+      <input #lastNameInput class="form-control" placeholder="Prénom">
+    </div>
+    <div class="form-group">
+      <input #universityInput class="form-control" placeholder="Etablissement universitaire">
+      <input #emailInput class="form-control" type="email" placeholder="Adresse Email">
+    </div>
+    <div class="form-group">
+      <input #specializationInput class="form-control" placeholder="Spécialité">
+      <input #labInput class="form-control" placeholder="Nom de laboratoire de recherche">
+    </div>
+    <div class="form-group">
+      <input #phoneInput class="form-control" placeholder="Numéro de téléphone">
+    </div>
+    <!-- Image upload -->
+    <div class="form-group file-input-container">
       <label for="image-upload" class="file-input-label">
         <i class="material-icons">image</i>
-        <span>Choose Image</span>
+        <span>Choisir une image</span>
       </label>
       <input #imageInput id="image-upload" type="file" (change)="onImageSelected(imageInput)" accept="image/*" class="form-control-file">
     </div>
-    <button (click)="onContinueClick(nameInput, descriptionInput, imageInput)" mat-flat-button color="warn">Continue</button>
+
+    <!-- Continue button -->
+    <button (click)="onContinueClick(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput)" class="btn btn-primary">Continuer</button>
   </div>
 </div>

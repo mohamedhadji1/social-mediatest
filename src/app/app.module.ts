@@ -63,7 +63,8 @@ import { UpdatePostDialogComponent } from './tools/update-post-dialog/update-pos
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    
   ],
   providers: [
     FirebaseTSFirestore,

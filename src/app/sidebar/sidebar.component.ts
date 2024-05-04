@@ -3,7 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -14,17 +13,17 @@ export class SidebarComponent implements OnInit {
 
   opened: boolean = false;
   loadedUser: UserDocument | undefined;
-
+  userImageUrl: string | null = null;
   constructor(
     private firestore: FirebaseTSFirestore,
     private auth: FirebaseTSAuth,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     if (this.user) {
       this.getCreatorInfo(this.user.userId);
-      console.log('Image URL:', this.user.imageUrl);
+      console.log(this.userImageUrl)
     }
   }
 

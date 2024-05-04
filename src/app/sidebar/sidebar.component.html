@@ -1,8 +1,6 @@
 <nav class="sidebar">
   <div class="profile" *ngIf="user">
-    <div *ngIf="loadedUser">
-      <img [src]="loadedUser.imageUrl" alt="User Image" class="profile-icon">
-    </div>
+    <img *ngIf="userImageUrl" [src]="userImageUrl" alt="User Image">
     <span class="username"> Welcome {{ user.publicName }}</span>
   </div>
   <a href="#" class="logo">ExploraLab</a>
@@ -39,3 +37,5 @@
 <nav class="navbar">
   <i class="fa-solid fa-bars" id="sidebar-close"></i>
 </nav>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+

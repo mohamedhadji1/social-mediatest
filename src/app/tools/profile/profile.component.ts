@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { FirebaseTSStorage } from 'firebasets/firebasetsStorage/firebaseTSStorage';
-import { UserDocument } from 'src/app/app.component';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +9,6 @@ import { UserDocument } from 'src/app/app.component';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
   @Input() show: boolean;
   firestore: FirebaseTSFirestore;
   auth: FirebaseTSAuth;
@@ -34,12 +32,23 @@ export class ProfileComponent implements OnInit {
   }
 
   onContinueClick(
-    nameInput: HTMLInputElement,
-    descriptionInput: HTMLTextAreaElement,
+    firstNameInput: HTMLInputElement,
+    lastNameInput: HTMLInputElement,
+    universityInput: HTMLInputElement,
+    emailInput: HTMLInputElement,
+    specializationInput: HTMLInputElement,
+    labInput: HTMLInputElement,
+    phoneInput: HTMLInputElement,
     imageInput: HTMLInputElement
   ) {
-    let name = nameInput.value;
-    let description = descriptionInput.value;
+    let firstName = firstNameInput.value;
+    let lastName = lastNameInput.value;
+    let university = universityInput.value;
+    let email = emailInput.value;
+    let specialization = specializationInput.value;
+    let lab = labInput.value;
+    let phone = phoneInput.value;
+
     const auth = this.auth.getAuth();
     if (auth !== null) {
       const currentUser = auth.currentUser;
@@ -56,16 +65,18 @@ export class ProfileComponent implements OnInit {
               this.firestore.create({
                 path: ["Users", currentUser.uid],
                 data: {
-                  publicName: name,
-                  description: description,
+                  firstName: firstName,
+                  lastName: lastName,
+                  university: university,
+                  email: email,
+                  specialization: specialization,
+                  lab: lab,
+                  phone: phone,
                   imageUrl: downloadUrl
                 },
                 onComplete: (docId) => {
                   alert("Profile Created");
-                  nameInput.value = "";
-                  descriptionInput.value = "";
-                  imageInput.value = "";
-                  this.selectedImage = null;
+                  this.resetForm(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput);
                 },
                 onFail: (err) => {
                   // Handle failure
@@ -77,15 +88,17 @@ export class ProfileComponent implements OnInit {
           this.firestore.create({
             path: ["Users", currentUser.uid],
             data: {
-              publicName: name,
-              description: description
+              firstName: firstName,
+              lastName: lastName,
+              university: university,
+              email: email,
+              specialization: specialization,
+              lab: lab,
+              phone: phone
             },
             onComplete: (docId) => {
               alert("Profile Created");
-              nameInput.value = "";
-              descriptionInput.value = "";
-              imageInput.value = "";
-              this.selectedImage = null;
+              this.resetForm(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput);
             },
             onFail: (err) => {
               // Handle failure
@@ -98,5 +111,26 @@ export class ProfileComponent implements OnInit {
     } else {
       // Handle the case where auth is null
     }
+  }
+
+  resetForm(
+    firstNameInput: HTMLInputElement,
+    lastNameInput: HTMLInputElement,
+    universityInput: HTMLInputElement,
+    emailInput: HTMLInputElement,
+    specializationInput: HTMLInputElement,
+    labInput: HTMLInputElement,
+    phoneInput: HTMLInputElement,
+    imageInput: HTMLInputElement
+  ) {
+    firstNameInput.value = "";
+    lastNameInput.value = "";
+    universityInput.value = "";
+    emailInput.value = "";
+    specializationInput.value = "";
+    labInput.value = "";
+    phoneInput.value = "";
+    imageInput.value = "";
+    this.selectedImage = null;
   }
 }
