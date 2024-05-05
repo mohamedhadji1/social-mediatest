@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore'; // Import Firestore service
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth'; // Import Auth service
+import { FirebaseTSStorage } from 'firebasets/firebasetsStorage/firebaseTSStorage';
 
 export interface UserDocument {
   publicName: string;
@@ -29,6 +30,8 @@ export class UserProfileComponent implements OnInit {
   specializationInput: string = '';
   labInput: string = '';
   phoneInput: string = '';
+  storage: FirebaseTSStorage;
+
 
   firestore: FirebaseTSFirestore;
   auth: FirebaseTSAuth;
@@ -36,6 +39,7 @@ export class UserProfileComponent implements OnInit {
   constructor() {
     this.firestore = new FirebaseTSFirestore(); // Initialize Firestore service
     this.auth = new FirebaseTSAuth(); // Initialize Auth service
+    this.storage = new FirebaseTSStorage();
   }
 
   ngOnInit(): void {
@@ -88,6 +92,43 @@ export class UserProfileComponent implements OnInit {
           this.fetchUserProfileData(userId); // Refresh profile data after update
         }
       });
+    }
+  }
+  updateProfilePicture(event: any) {
+    const user = this.auth.getAuth().currentUser;
+  if (user && event.target.files && event.target.files.length > 0) {
+    const file = event.target.files[0];
+    const filePath = `profile-images/${user.uid}/${file.name}`;
+
+    // Upload file to Firebase Storage
+    this.storage.upload({
+      uploadName: file.name,
+      path: ['profile-images', user.uid ], // Providing path as an array of strings
+      data: {
+        data: file,
+        metadata: { /* Optional metadata */ }
+      },
+      onComplete: (downloadUrl) => {
+        // Update user profile with the new image URL
+        this.firestore.update({
+          path: ['Users', user.uid],
+          data: { imageUrl: downloadUrl },
+          onComplete: () => {
+            console.log('Profile picture updated successfully!');
+            this.fetchUserProfileData(user.uid); // Refresh profile data after update
+          }
+        });
+      },
+      onFail: (error) => {
+        console.error('Error uploading profile picture:', error);
+      }
+    });
+  }
+  }
+  openFileInput() {
+    const fileInput = document.getElementById('profile-picture-input');
+    if (fileInput) {
+      fileInput.click();
     }
   }
 }
