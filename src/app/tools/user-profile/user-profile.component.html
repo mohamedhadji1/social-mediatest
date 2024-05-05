@@ -128,60 +128,62 @@
               </div>
             </div>
             <div class="card-body">
-              <form>
-                <h6 class="heading-small text-muted mb-4">User information</h6>
+              <form (ngSubmit)="updateUserProfile()">
+                <h6 class="heading-small text-muted mb-4">User Information</h6>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-username">Nom</label>
-                        <input type="text" id="firstName" class="form-control form-control-alternative" placeholder="first name">
+                        <label class="form-control-label" for="firstName">First Name</label>
+                        <input type="text" class="form-control form-control-alternative" id="firstName" [(ngModel)]="firstNameInput" name="firstName" placeholder="First Name">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-username">Prenom</label>
-                        <input type="text" id="lastName" class="form-control form-control-alternative" placeholder="last name">
+                        <label class="form-control-label" for="lastName">Last Name</label>
+                        <input type="text" class="form-control form-control-alternative" id="lastName" [(ngModel)]="lastNameInput" name="lastName" placeholder="Last Name">
                       </div>
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-username">university</label>
-                        <input type="text" id="university" class="form-control form-control-alternative" placeholder="university">
+                        <label class="form-control-label" for="university">University</label>
+                        <input type="text" class="form-control form-control-alternative" id="university" [(ngModel)]="universityInput" name="university" placeholder="University">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="email@example.com">
+                        <label class="form-control-label" for="email">Email address</label>
+                        <input type="email" class="form-control form-control-alternative" id="email" [(ngModel)]="emailInput" name="email" placeholder="jesse@example.com">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-first-name">laboratoire</label>
-                        <input type="text" id="lab" class="form-control form-control-alternative" placeholder="First name">
+                        <label class="form-control-label" for="lab">Lab</label>
+                        <input type="text" class="form-control form-control-alternative" id="lab" [(ngModel)]="labInput" name="lab" placeholder="Lab">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-last-name">numero de telephone</label>
-                        <input type="text" id="phone" class="form-control form-control-alternative" placeholder="phone">
+                        <label class="form-control-label" for="phone">Phone</label>
+                        <input type="text" class="form-control form-control-alternative" id="phone" [(ngModel)]="phoneInput" name="phone" placeholder="Phone">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-first-name">spécialité</label>
-                        <input type="text" id="specialization" class="form-control form-control-alternative" placeholder="spécialité">
+                        <label class="form-control-label" for="specialization">Specialization</label>
+                        <input type="text" class="form-control form-control-alternative" id="specialization" [(ngModel)]="specializationInput" name="specialization" placeholder="Specialization">
                       </div>
                     </div>
                   </div>
                 </div>
                 <hr class="my-4">
-                <a href="#!" class="btn btn-info">Edit profile</a>
+                <button type="submit" class="btn btn-info">Update Profile</button>
               </form>
             </div>
           </div>

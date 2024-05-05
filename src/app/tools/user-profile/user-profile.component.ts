@@ -66,5 +66,28 @@ export class UserProfileComponent implements OnInit {
       }
     });
   }
+  updateUserProfile() {
+    const user = this.auth.getAuth().currentUser;
+    if (user) {
+      const userId = user.uid;
+      const userDataToUpdate: Partial<UserDocument> = {
+        firstName: this.firstNameInput,
+        lastName: this.lastNameInput,
+        university: this.universityInput,
+        email: this.emailInput,
+        specialization: this.specializationInput,
+        lab: this.labInput,
+        phone: this.phoneInput
+      };
 
+      this.firestore.update({
+        path: ['Users', userId],
+        data: userDataToUpdate,
+        onComplete: () => {
+          console.log('User profile updated successfully!');
+          this.fetchUserProfileData(userId);
+        }
+      });
+    }
+  }
 }
