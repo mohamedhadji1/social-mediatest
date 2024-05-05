@@ -51,7 +51,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <label for="profile-picture-input">
-                    <img *ngIf="userProfileData?.imageUrl" [src]="userProfileData?.imageUrl" class="rounded-circle" >
+                    <img *ngIf="userProfileData?.imageUrl" [src]="userProfileData?.imageUrl" class="rounded-circle" [style.width.px]="150" [style.height.px]="200" >
                   </label>
                   <input id="profile-picture-input" type="file" style="display: none" (change)="updateProfilePicture($event)" accept="image/*">
                 </div>
