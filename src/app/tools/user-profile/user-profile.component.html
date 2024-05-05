@@ -67,7 +67,6 @@
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Hello {{userProfileData?.lastName}}</h1>
             <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-            <a href="#!" class="btn btn-info">Edit profile</a>
           </div>
         </div>
       </div>
@@ -126,9 +125,6 @@
                 <div class="col-8">
                   <h3 class="mb-0">My account</h3>
                 </div>
-                <div class="col-4 text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>
-                </div>
               </div>
             </div>
             <div class="card-body">
@@ -139,7 +135,19 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">first name</label>
-                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="first name">
+                        <input type="text" id="firstName" class="form-control form-control-alternative" placeholder="first name">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-username">last name</label>
+                        <input type="text" id="lastName" class="form-control form-control-alternative" placeholder="last name">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-username">university</label>
+                        <input type="text" id="university" class="form-control form-control-alternative" placeholder="university">
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -152,19 +160,28 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-first-name">First name</label>
-                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Lucky">
+                        <label class="form-control-label" for="input-first-name">laboratoire</label>
+                        <input type="text" id="lab" class="form-control form-control-alternative" placeholder="First name">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-last-name">Last name</label>
-                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Jesse">
+                        <label class="form-control-label" for="input-last-name">phone</label>
+                        <input type="text" id="phone" class="form-control form-control-alternative" placeholder="phone">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-first-name">spécialité</label>
+                        <input type="text" id="specialization" class="form-control form-control-alternative" placeholder="spécialité">
                       </div>
                     </div>
                   </div>
                 </div>
                 <hr class="my-4">
+                <a href="#!" class="btn btn-info">Edit profile</a>
               </form>
             </div>
           </div>
@@ -172,13 +189,4 @@
       </div>
     </div>
   </div>
-  <footer class="footer">
-    <div class="row align-items-center justify-content-xl-between">
-      <div class="col-xl-6 m-auto text-center">
-        <div class="copyright">
-          <p>Made with <a href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">Argon Dashboard</a> by Creative Tim</p>
-        </div>
-      </div>
-    </div>
-  </footer>
 </body>
