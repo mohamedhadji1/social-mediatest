@@ -135,13 +135,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="firstName">First Name</label>
-                        <input type="text" class="form-control form-control-alternative" id="firstName" [(ngModel)]="firstNameInput" name="firstName" placeholder="First Name">
+                        <input type="text" class="form-control form-control-alternative" id="firstName" [(ngModel)]="firstNameInput" name="firstName" value="{{userProfileData?.firstName}}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="lastName">Last Name</label>
-                        <input type="text" class="form-control form-control-alternative" id="lastName" [(ngModel)]="lastNameInput" name="lastName" placeholder="Last Name">
+                        <input type="text" class="form-control form-control-alternative" id="lastName" [(ngModel)]="lastNameInput" name="lastName" value="{{userProfileData?.lastName}}">
                       </div>
                     </div>
                   </div>
@@ -149,13 +149,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="university">University</label>
-                        <input type="text" class="form-control form-control-alternative" id="university" [(ngModel)]="universityInput" name="university" placeholder="University">
+                        <input type="text" class="form-control form-control-alternative" id="university" [(ngModel)]="universityInput" name="university" value="{{userProfileData?.university}}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="email">Email address</label>
-                        <input type="email" class="form-control form-control-alternative" id="email" [(ngModel)]="emailInput" name="email" placeholder="jesse@example.com">
+                        <input type="email" class="form-control form-control-alternative" id="email" [(ngModel)]="emailInput" name="email" value="{{ userProfileData?.email }}">
                       </div>
                     </div>
                   </div>
@@ -163,13 +163,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="lab">Lab</label>
-                        <input type="text" class="form-control form-control-alternative" id="lab" [(ngModel)]="labInput" name="lab" placeholder="Lab">
+                        <input type="text" class="form-control form-control-alternative" id="lab" [(ngModel)]="labInput" name="lab" value="{{userProfileData?.lab}}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="phone">Phone</label>
-                        <input type="text" class="form-control form-control-alternative" id="phone" [(ngModel)]="phoneInput" name="phone" placeholder="Phone">
+                        <input type="text" class="form-control form-control-alternative" id="phone" [(ngModel)]="phoneInput" name="phone" value="{{userProfileData?.phone}}">
                       </div>
                     </div>
                   </div>
@@ -177,7 +177,7 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="specialization">Specialization</label>
-                        <input type="text" class="form-control form-control-alternative" id="specialization" [(ngModel)]="specializationInput" name="specialization" placeholder="Specialization">
+                        <input type="text" class="form-control form-control-alternative" id="specialization" [(ngModel)]="specializationInput" name="specialization" value="{{userProfileData?.specialization}}">
                       </div>
                     </div>
                   </div>
