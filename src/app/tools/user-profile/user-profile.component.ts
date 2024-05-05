@@ -70,22 +70,22 @@ export class UserProfileComponent implements OnInit {
     const user = this.auth.getAuth().currentUser;
     if (user) {
       const userId = user.uid;
-      const userDataToUpdate: Partial<UserDocument> = {
-        firstName: this.firstNameInput,
-        lastName: this.lastNameInput,
-        university: this.universityInput,
-        email: this.emailInput,
-        specialization: this.specializationInput,
-        lab: this.labInput,
-        phone: this.phoneInput
-      };
+      const userDataToUpdate: Partial<UserDocument> = {};
+
+      if (this.firstNameInput) userDataToUpdate.firstName = this.firstNameInput;
+      if (this.lastNameInput) userDataToUpdate.lastName = this.lastNameInput;
+      if (this.universityInput) userDataToUpdate.university = this.universityInput;
+      if (this.emailInput) userDataToUpdate.email = this.emailInput;
+      if (this.specializationInput) userDataToUpdate.specialization = this.specializationInput;
+      if (this.labInput) userDataToUpdate.lab = this.labInput;
+      if (this.phoneInput) userDataToUpdate.phone = this.phoneInput;
 
       this.firestore.update({
         path: ['Users', userId],
         data: userDataToUpdate,
         onComplete: () => {
           console.log('User profile updated successfully!');
-          this.fetchUserProfileData(userId);
+          this.fetchUserProfileData(userId); // Refresh profile data after update
         }
       });
     }
