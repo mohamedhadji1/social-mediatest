@@ -135,25 +135,25 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Nom</label>
-                        <input type="text" id="firstName" class="form-control form-control-alternative" placeholder="first name">
+                        <input type="text" id="firstName" class="form-control form-control-alternative" value="{{userProfileData?.firstName}}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Prenom</label>
-                        <input type="text" id="lastName" class="form-control form-control-alternative" placeholder="last name">
+                        <input type="text" id="lastName" class="form-control form-control-alternative" value="{{userProfileData?.lastName}}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">university</label>
-                        <input type="text" id="university" class="form-control form-control-alternative" placeholder="university">
+                        <input type="text" id="university" class="form-control form-control-alternative" value="{{userProfileData?.university}}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="email@example.com">
+                        <input type="email" id="input-email" class="form-control form-control-alternative" value="{{ userProfileData?.email }}">
                       </div>
                     </div>
                   </div>
@@ -161,13 +161,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-first-name">laboratoire</label>
-                        <input type="text" id="lab" class="form-control form-control-alternative" placeholder="First name">
+                        <input type="text" id="lab" class="form-control form-control-alternative" value="{{userProfileData?.lab}}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-last-name">numero de telephone</label>
-                        <input type="text" id="phone" class="form-control form-control-alternative" placeholder="phone">
+                        <input type="text" id="phone" class="form-control form-control-alternative" value="{{userProfileData?.phone}}">
                       </div>
                     </div>
                   </div>
@@ -175,7 +175,7 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-first-name">spécialité</label>
-                        <input type="text" id="specialization" class="form-control form-control-alternative" placeholder="spécialité">
+                        <input type="text" id="specialization" class="form-control form-control-alternative" value="{{userProfileData?.specialization}}">
                       </div>
                     </div>
                   </div>
