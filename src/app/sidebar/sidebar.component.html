@@ -1,7 +1,33 @@
 <nav class="sidebar">
+  <div class="profile-center">
+    <a href="/profil">
+      <img
+        alt="Image placeholder"
+        *ngIf="userProfileData?.imageUrl"
+        [src]="userProfileData?.imageUrl"
+        class="avatar-img"
+      >
+    </a>
+    <span class="mb-0 text-sm font-weight-bold">{{ userProfileData?.firstName }}</span>
+  </div>
 
+  <!-- <div class="container-fluid">
+   
+    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank"></a>
+    
+    <ul class="navbar-nav align-items-center d-none d-md-flex">
+          <div class="media align-items-center">
+            <span class="avatar avatar-sm rounded-circle">
+              <img alt="Image placeholder" *ngIf="userProfileData?.imageUrl" [src]="userProfileData?.imageUrl" >
+            </span>
+            <div class="media-body ml-2 d-none d-lg-block">
+              <span class="mb-0 text-sm  font-weight-bold">{{userProfileData?.firstName}} {{userProfileData?.lastName}}</span>
+            </div>
+          </div>
 
-  <a href="#" class="logo">ExploraLab</a>
+    </ul>
+  </div> -->
+  <!-- <a href="#" class="logo">ExploraLab</a> -->
 
   <div class="menu-content">
     <ul class="menu-items">
@@ -16,7 +42,7 @@
       </li>
 
       <li class="item">
-        <a routerLink="/gestion-event"><i class="fas fa-calendar-alt"></i> Gestion Event</a>
+        <a routerLink="/showRequest"><i class="fas fa-calendar-alt"></i> Gestion Event</a>
       </li>
 
       <li class="item">

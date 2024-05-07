@@ -122,3 +122,15 @@
   color: #fff;
   cursor: pointer;
 }
+.avatar-img {
+  border-radius: 50%; /* Makes the image circular */
+  width: 70px; /* Set the desired width */
+  height: 70px; /* Ensure the height is the same to maintain the circle */
+  object-fit: cover; /* Ensures the image fills the container without distortion */
+  margin-bottom: 10px;
+}
+.profile-center {
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  align-items: center; /* Center horizontally */
+}

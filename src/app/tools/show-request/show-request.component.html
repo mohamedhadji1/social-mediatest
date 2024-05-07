@@ -1,0 +1,44 @@
+<div id="sidebar">
+  <app-sidebar></app-sidebar>
+</div>
+<div class="request-list">
+  <h2>Liste des événements</h2>
+  <div>
+    <button class="top-button" (click)="navigateToAddRequest()">Déposer une demande</button>
+  </div>
+  <div *ngIf="!loading">
+  <table class="request-table">
+    <thead>
+      <tr>
+        <th>Nom de l'événement</th>
+        <th>Date de l'événement</th>
+        <th>Heure de l'événement</th>
+        <th>Action de l'événement</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr *ngFor="let request of requests | async" class="request-row">
+        <td>{{ request.nomEven }}</td>
+        <td>{{ request.date }}</td>
+        <td>{{ request.heure }}</td>
+        <td [ngClass]="{
+          'yellow-text': request.Action === 'En attend',
+          'green-text': request.Action === 'Accepté',
+          'red-text': request.Action === 'réfusé'
+        }">
+      {{ request.Action }}
+    </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div *ngIf="loading" class="spinner-container">
+    <!-- Angular Material spinner with specific color and mode -->
+    <mat-progress-spinner
+      color="primary" 
+      mode="indeterminate" 
+      diameter="70"
+    ></mat-progress-spinner>
+  </div>
+</div>

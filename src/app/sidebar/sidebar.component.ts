@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
   //@Input() user: UserDocument = { publicName: '', description: '', userId: '', imageUrl: '' }; // Initialize the user property
 
+  userProfileData: UserDocument | null = null;
   opened: boolean = false;
   loadedUser: UserDocument | undefined;
   userImageUrl: string | null = null;
@@ -25,6 +26,31 @@ export class SidebarComponent implements OnInit {
       //this.getCreatorInfo(this.user.userId);
       console.log(this.userImageUrl)
     }*/
+    this.auth.getAuth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log("User signed in:", user.uid, user.email);
+        this.fetchUserProfileData(user.uid);
+      } else {
+        console.error("No user is currently authenticated.");
+      }
+    });
+  }
+  fetchUserProfileData(userId: string) {
+    this.firestore.getDocument({
+      path: ['Users', userId],
+      onComplete: (documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          const userData = documentSnapshot.data() as UserDocument;
+          this.userProfileData = userData;
+          console.log("User Profile Data:", this.userProfileData);
+        } else {
+          console.log("User profile document does not exist.");
+        }
+      },
+      onFail: (error) => {
+        console.error("Failed to fetch user profile data:", error);
+      }
+    });
   }
 
   /*getCreatorInfo(creatorId: string) {

@@ -30,8 +30,9 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdatePostDialogComponent } from './tools/update-post-dialog/update-post-dialog.component';
 import { UserProfileComponent } from './tools/user-profile/user-profile.component';
-
-
+import { AddRequestComponent } from './tools/add-request/add-request.component';
+import { ShowRequestComponent } from './tools/show-request/show-request.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -49,7 +50,10 @@ import { UserProfileComponent } from './tools/user-profile/user-profile.componen
     ConfirmationDialogComponent,
     SidebarComponent,
     UpdatePostDialogComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AddRequestComponent,
+    ShowRequestComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -66,6 +70,7 @@ import { UserProfileComponent } from './tools/user-profile/user-profile.componen
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatProgressSpinnerModule
     
   ],
   providers: [
