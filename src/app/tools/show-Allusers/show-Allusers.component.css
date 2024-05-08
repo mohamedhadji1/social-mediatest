@@ -1,0 +1,56 @@
+.main-container {
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.table-wrapper {
+  padding: 10px;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle; 
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover; 
+}
+
+#sidebar {
+  float: left;
+  width: 20%; 
+  height: 100%; 
+  overflow-y: auto; 
+}
+
+.main-container {
+  margin-left: 20%; 
+}
+.button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+button.mat-icon-button {
+  color: #333; 
+}
+
+button.mat-icon-button:hover {
+  color: #555; 
+}

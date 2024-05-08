@@ -72,7 +72,8 @@ export class ProfileComponent implements OnInit {
                   specialization: specialization,
                   lab: lab,
                   phone: phone,
-                  imageUrl: downloadUrl
+                  imageUrl: downloadUrl,
+                  role: 'chercheur'
                 },
                 onComplete: (docId) => {
                   alert("Profile Created");

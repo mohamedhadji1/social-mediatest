@@ -6,6 +6,7 @@ import { PostFeedComponent } from './pages/post-feed/post-feed.component';
 import { UserProfileComponent } from './tools/user-profile/user-profile.component';
 import { AddRequestComponent } from './tools/add-request/add-request.component';
 import { ShowRequestComponent } from './tools/show-request/show-request.component';
+import { ShowAllusersComponent } from './tools/show-Allusers/show-Allusers.component'
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'postfeed', component: PostFeedComponent },
   { path: 'addRequest', component: AddRequestComponent },
   { path: 'showRequest', component: ShowRequestComponent },
+  { path: 'ListUser', component: ShowAllusersComponent },
   {path: "**", component: HomeComponent}
 ];
 

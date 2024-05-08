@@ -32,6 +32,7 @@ import { UpdatePostDialogComponent } from './tools/update-post-dialog/update-pos
 import { UserProfileComponent } from './tools/user-profile/user-profile.component';
 import { AddRequestComponent } from './tools/add-request/add-request.component';
 import { ShowRequestComponent } from './tools/show-request/show-request.component';
+import { ShowAllusersComponent } from './tools/show-Allusers/show-Allusers.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
@@ -53,6 +54,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     UserProfileComponent,
     AddRequestComponent,
     ShowRequestComponent,
+    ShowAllusersComponent,
     
   ],
   imports: [

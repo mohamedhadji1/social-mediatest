@@ -49,6 +49,9 @@
         <a routerLink="/postfeed"><i class="fas fa-newspaper"></i> Gestion Post</a>
       </li>
 
+      <li class="item" *ngIf="userProfileData?.role === 'responsable universitaire' || userProfileData?.role === 'chef laboratoire'">
+        <a routerLink="/ListUser"><i class="fas fa-newspaper"></i> Gestion Utilisateur</a>
+      </li>
       <div class="separator"></div>
 
       <li class="item">

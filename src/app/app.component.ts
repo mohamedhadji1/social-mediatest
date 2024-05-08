@@ -106,4 +106,5 @@ export interface UserDocument {
   specialization: string;
   lab: string;
   phone: string;
+  role: string;
 }
