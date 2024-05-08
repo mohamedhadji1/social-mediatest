@@ -83,7 +83,35 @@ deleteUser(userId: string): Promise<void> {
   });
 }
 
+updateUser(user: UserDocument): Promise<void> {
+  // The Firestore document path to update
+  const documentPath = ['Users', user.userId];
 
+  return new Promise<void>((resolve, reject) => {
+    this.firestore.update({
+      path: documentPath,
+      data: {
+        // Update these fields in Firestore
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        lab: user.lab,
+        specialization: user.specialization,
+        university: user.university,
+        role: user.role,
+      },
+      onComplete: () => {
+        console.log(`User with ID ${user.userId} updated successfully.`);
+        resolve(); // Resolve the Promise when update is successful
+      },
+      onFail: (error) => {
+        console.error(`Error updating user with ID ${user.userId}:`, error);
+        reject(error); // Reject the Promise if an error occurs
+      },
+    });
+  });
+}
 
 getUsers(): Observable<UserDocument[]> {
   return this.usersSubject.asObservable();

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDocument } from 'src/app/app.component';
 import { UserServiceService } from 'src/services/UserService.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
 
 @Component({
   selector: 'app-show-Allusers',
@@ -9,7 +11,7 @@ import { UserServiceService } from 'src/services/UserService.service';
 })
 export class ShowAllusersComponent implements OnInit {
   users: UserDocument[] = [];
-  constructor(private userService: UserServiceService) { }
+  constructor(private userService: UserServiceService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     console.log('All list',this.userService.getUsers())
@@ -33,10 +35,22 @@ export class ShowAllusersComponent implements OnInit {
     }
   }
 
-  // Modify user
   modifyUser(user: UserDocument): void {
-    // Navigate to a different component or open a modal for editing
-    // this.router.navigate(['/edit-user', user.userId]); // Example navigation
+    const dialogRef = this.matDialog.open(EditUserDialogComponent, {
+      width: '500px',
+      data: user, // Pass the user data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe((updatedUser) => {
+      if (updatedUser) {
+        // If there were changes, update the user
+        this.userService.updateUser({ ...user, ...updatedUser }).then(() => {
+          console.log('User updated successfully');
+        }).catch((error) => {
+          console.error('Error updating user:', error);
+        });
+      }
+    });
   }
 
 }

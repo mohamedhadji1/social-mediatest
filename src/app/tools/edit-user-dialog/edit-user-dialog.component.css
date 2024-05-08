@@ -1,0 +1,105 @@
+/* General styles for the form container */
+.edit-user-container {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for better contrast */
+    border-radius: 10px; /* Rounded corners */
+    max-width: 700px; /* Constrain width */
+    margin: 5px auto; /* Centered with margin */
+  }
+  
+  /* Style for form labels */
+  .edit-user-container label {
+    display: inline-block; /* Ensures alignment */
+    width: 120px; /* Fixed width for alignment */
+    font-weight: bold; /* Bold for visibility */
+    margin-bottom: 8px; /* Space below the label */
+  }
+  
+  /* Style for form inputs */
+  .edit-user-container input,
+  .edit-user-container select {
+    padding: 8px; /* Padding for comfort */
+    border: 1px solid #ccc; /* Border for definition */
+    border-radius: 5px; /* Rounded corners */
+    width: calc(100% - 130px); /* Adjusted width for consistent layout */
+    box-sizing: border-box; /* Ensure consistent width calculation */
+  }
+  
+  /* Style for submit and cancel buttons */
+  .edit-user-container button {
+    padding: 10px 20px; /* Padding for comfort */
+    border: none; /* No border for buttons */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+  }
+  
+  /* Specific styles for buttons */
+  .edit-user-container button[type='submit'] {
+    background-color: #28a745; /* Green for submit */
+    color: white; /* White text */
+  }
+  
+  .edit-user-container button[type='submit']:hover {
+    background-color: #218838; /* Darker on hover */
+  }
+  
+  .edit-user-container button[type='button'] {
+    background-color: #dc3545; /* Red for cancel */
+    color: white; /* White text */
+  }
+  
+  .edit-user-container button[type='button']:hover {
+    background-color: #c82333; /* Darker on hover */
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 600px) {
+    .edit-user-container label {
+      width: 100%; /* Full width for smaller screens */
+    }
+  
+    .edit-user-container input,
+    .edit-user-container select {
+      width: 100%; /* Full width for smaller screens */
+    }
+  
+    .edit-user-container button {
+      width: 100%; /* Full width for buttons */
+    }
+  }
+  .button-group {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center the content horizontally */
+    gap: 10px; /* Space between buttons */
+  }
+  
+  .submit-button,
+  .cancel-button {
+    padding: 10px 20px; /* Padding for the buttons */
+    border: none; /* No border for buttons */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+  }
+  
+  /* Specific styles for submit and cancel buttons */
+  .submit-button {
+    background-color: #28a745; /* Green for submit */
+    color: white; /* White text */
+  }
+  
+  .submit-button:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  .cancel-button {
+    background-color: #dc3545; /* Red for cancel */
+    color: white; /* White text */
+  }
+  
+  .cancel-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
+  
+  

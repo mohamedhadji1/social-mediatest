@@ -34,6 +34,9 @@ import { AddRequestComponent } from './tools/add-request/add-request.component';
 import { ShowRequestComponent } from './tools/show-request/show-request.component';
 import { ShowAllusersComponent } from './tools/show-Allusers/show-Allusers.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { EditUserDialogComponent } from './tools/edit-user-dialog/edit-user-dialog.component';
 
 
 @NgModule({
@@ -55,6 +58,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AddRequestComponent,
     ShowRequestComponent,
     ShowAllusersComponent,
+    EditUserDialogComponent,
     
   ],
   imports: [
@@ -72,7 +76,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatInputModule,
+    MatSelectModule,
     
   ],
   providers: [
