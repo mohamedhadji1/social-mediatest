@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AddRequestService } from 'src/services//add-request.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserDocument } from 'src/app/app.component';
 import { UserServiceService } from 'src/services/UserService.service';
-import { map } from 'rxjs/operators';
+import { map, startWith, switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-show-request',
   templateUrl: './show-request.component.html',
@@ -18,7 +18,10 @@ export class ShowRequestComponent implements OnInit {
   loading = true;
   isChercheur$!: Observable<boolean>;
   userRole: UserDocument | null = null;
-
+  searchForm: FormGroup = new FormGroup({
+    searchTerm: new FormControl('')
+  });
+  filteredRequests: Observable<any[]> = new Observable<any[]>();
   constructor(
     private addRequestService: AddRequestService,
     private router: Router,
@@ -35,13 +38,42 @@ export class ShowRequestComponent implements OnInit {
       );
     });
     this.requests = this.addRequestService.getRequests();
-
+    this.initializeForm();
+    this.setupFilteredRequests();
   }
   isChercheur(userList: UserDocument[]): boolean {
     return !!userList.find(user => user.role === 'chercheur');
   }
+  initializeForm() {
+    this.searchForm = new FormGroup({
+      searchTerm: new FormControl('')
+    });
+  }
   navigateToAddRequest() {
     this.router.navigate(['/addRequest']);
+  }
+  setupFilteredRequests() {
+    this.filteredRequests = this.searchForm.get('searchTerm')!.valueChanges
+      .pipe(
+        startWith(''),
+        switchMap((text: string) => this.search(text))
+      );
+  }
+
+  search(text: string): Observable<any[]> {
+    return this.requests ? this.requests.pipe(
+      map(requests => requests.filter(request => request.nomEven.toLowerCase().includes(text.toLowerCase())))
+    ) : of([]);
+  }
+
+  applyFilter() {
+    const searchTermControl = this.searchForm.get('searchTerm');
+    if (searchTermControl) {
+      const searchTerm = searchTermControl.value;
+      this.filteredRequests = this.search(searchTerm);
+    } else {
+      console.error('Search term control not found');
+    }
   }
   // Method to accept a request
   acceptRequest(requestId: string) {
