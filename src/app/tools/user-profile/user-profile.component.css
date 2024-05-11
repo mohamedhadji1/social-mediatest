@@ -2014,3 +2014,45 @@ p {
 #navbar .navbar {
   margin-bottom: 20px;
 }
+/* CSS for navbar */
+.navbar {
+  background-color: #333; /* Change the background color as needed */
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: white; /* Change the text color as needed */
+  text-decoration: none;
+  padding: 10px;
+}
+
+/* CSS for dropdown menu */
+.mat-menu-panel {
+  background-color: #fff; /* Change the background color of the dropdown menu */
+  border-radius: 4px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow for a card-like effect */
+}
+
+.mat-menu-content {
+  padding: 10px;
+}
+
+.mat-menu-item {
+  padding: 8px 16px;
+  font-size: 16px; /* Change the font size as needed */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column;
+  }
+
+  .nav-link {
+    text-align: center;
+  }
+}
