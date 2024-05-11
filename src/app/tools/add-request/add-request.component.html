@@ -1,69 +1,65 @@
-<div id="sidebar">
+<div id="sidebar" class="sidebar-styling">
   <app-sidebar></app-sidebar>
 </div>
-<form [formGroup]="AddRequest" (ngSubmit)="onSubmit()" class="form-container">
-  
-  <div class="form-group">
-    <h1>Demande d'organisation d'un événement</h1>
+<form [formGroup]="AddRequest" (ngSubmit)="onSubmit()" class="form-container stylish-form">
+
+  <div class="form-group title-header">
+    <h1 class="form-title">Demande d'organisation d'un événement</h1>
   </div>
 
-  <div class="form-group">
-    <label for="nomEven">Nom de l'événement:</label>
-    <input id="nomEven" formControlName="nomEven" type="text" />
+  <div class="form-group input-group">
+    <label for="nomEven" class="input-label">Nom de l'événement:</label>
+    <input id="nomEven" formControlName="nomEven" type="text" class="input-field" />
   </div>
 
-  <div class="form-group">
-    <label for="date">Date:</label>
-    <input type="date" id="date" formControlName="date" />
+  <div class="form-group input-group">
+    <label for="date" class="input-label">Date:</label>
+    <input type="date" id="date" formControlName="date" class="input-field" />
   </div>
 
-  <div class="form-group">
-    <label for="heure">Heure:</label>
-    <input type="time" id="heure" formControlName="heure" />
+  <div class="form-group input-group">
+    <label for="heure" class="input-label">Heure:</label>
+    <input type="time" id="heure" formControlName="heure" class="input-field" />
   </div>
 
-  <div class="form-group">
-    <label>Type d'évènement:</label>
-    <div formGroupName="typeEvenement" class="checkbox-group">
-      <label>
-        <input type="checkbox" formControlName="conference" /> Conférence
-      </label>
-      <label>
-        <input type="checkbox" formControlName="atelier" /> Atelier
-      </label>
-      <label>
-        <input type="checkbox" formControlName="seminaire" /> Séminaire
-      </label>
-    </div>
+  <div class="form-group input-group">
+    <label for="typeEvenement" class="input-label">Type d'événement:</label>
+    <select id="typeEvenement" formControlName="typeEvenement" class="input-field">
+      <option value="conference">Conférence</option>
+      <option value="atelier">Atelier</option>
+      <option value="seminaire">Séminaire</option>
+    </select>
   </div>
 
-  <div class="form-group">
-    <label for="nombreParticipants">Nombre prévu de participants:</label>
+  <div class="form-group input-group">
+    <label for="nombreParticipants" class="input-label">Nombre prévu de participants:</label>
     <input
       type="number"
       id="nombreParticipants"
       formControlName="nombreParticipants"
       min="1"
+      class="input-field"
     />
   </div>
 
-  <div class="form-group">
-    <label for="lieu">Lieu:</label>
-    <input id="lieu" formControlName="lieu" type="text" />
+  <div class="form-group input-group">
+    <label for="lieu" class="input-label">Lieu:</label>
+    <input id="lieu" formControlName="lieu" type="text" class="input-field" />
   </div>
 
-  <div class="form-group">
-    <label for="description">Description:</label>
+  <div class="form-group input-group">
+    <label for="description" class="input-label">Description:</label>
     <textarea
       id="description"
       formControlName="description"
       rows="10"
       cols="40"
+      class="textarea-field"
     ></textarea>
   </div>
 
   <div class="form-group form-actions">
-    <button type="button" (click)="onReset()" class="reset-button">Annuler</button>
-    <button type="submit" class="submit-button">Soumettre votre demande</button>
+    <button type="button" (click)="onReset()" class="reset-button action-button">Annuler</button>
+    <button type="submit" class="submit-button action-button">Soumettre votre demande</button>
   </div>
 </form>

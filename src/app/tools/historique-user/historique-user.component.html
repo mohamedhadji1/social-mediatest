@@ -1,0 +1,47 @@
+<app-sidebar></app-sidebar>
+<div class="container">
+  <div class="grid-container">
+
+
+    <section class="user-section grid-item">
+      <h2>Demandes de l'Événement de l'utilisateur</h2>
+      <div *ngIf="userRequests.length > 0; else noRequests">
+        <table class="request-table">
+          <thead>
+            <tr>
+              <th>Événement</th>
+              <th>Date</th>
+              <th>Lieu</th>
+              <th>Participants</th>
+              <th>Heure</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of userRequests">
+              <td>{{ request.nomEven }}</td>
+              <td>{{ request.date }}</td>
+              <td>{{ request.lieu }}</td>
+              <td>{{ request.nombreParticipants }}</td>
+              <td>{{ request.heure }}</td>
+              <td>
+                <span *ngIf="request.isSubmittedByChef && request.isSubmittedByrespo" class="text-success">Accepté</span>
+                <span *ngIf="request.isSubmittedByChef === false && !(request.isSubmittedByChef === false && request.isSubmittedByrespo === false)" class="text-danger">Chef de laboratoire Refusé a Refusé votre de mande</span>
+                <span *ngIf="request.isSubmittedByrespo === false && !(request.isSubmittedByChef === false && request.isSubmittedByrespo === false)" class="text-danger">Responsable universitaire a Refusé votre de mande</span>
+                <span *ngIf="!request.isSubmittedByChef && !request.isSubmittedByrespo" class="text-warning">En attente</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <ng-template #noRequests>
+    <p>Aucune demande trouvée pour l'utilisateur actuel.</p>
+  </ng-template>
+  <ng-template #noPosts>
+    <p>Aucune publication trouvée pour l'utilisateur actuel.</p>
+  </ng-template>
+</div>
+

@@ -10,25 +10,6 @@
     </a>
     <span class="mb-0 text-sm font-weight-bold">{{ userProfileData?.firstName }}</span>
   </div>
-
-  <!-- <div class="container-fluid">
-   
-    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank"></a>
-    
-    <ul class="navbar-nav align-items-center d-none d-md-flex">
-          <div class="media align-items-center">
-            <span class="avatar avatar-sm rounded-circle">
-              <img alt="Image placeholder" *ngIf="userProfileData?.imageUrl" [src]="userProfileData?.imageUrl" >
-            </span>
-            <div class="media-body ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm  font-weight-bold">{{userProfileData?.firstName}} {{userProfileData?.lastName}}</span>
-            </div>
-          </div>
-
-    </ul>
-  </div> -->
-  <!-- <a href="#" class="logo">ExploraLab</a> -->
-
   <div class="menu-content">
     <ul class="menu-items">
       <div class="menu-title">Dashboard</div>
@@ -41,10 +22,15 @@
         <a routerLink="/gestion-projet"><i class="fas fa-project-diagram"></i> Gestion Projet</a>
       </li>
 
-      <li class="item">
+      <li class="item" *ngIf="userProfileData?.role === 'chef laboratoire'">
         <a routerLink="/showRequest"><i class="fas fa-calendar-alt"></i> Gestion Event</a>
       </li>
-
+      <li class="item" *ngIf="userProfileData?.role === 'responsable universitaire'">
+        <a routerLink="/showRequestrespo"><i class="fas fa-calendar-alt"></i> Gestion Event</a>
+      </li>
+      <li class="item" *ngIf="userProfileData?.role === 'chercheur'">
+        <a routerLink="/event"><i class="fas fa-calendar-alt"></i> Ajouter event</a>
+      </li>
       <li class="item">
         <a routerLink="/postfeed"><i class="fas fa-newspaper"></i> Gestion Post</a>
       </li>

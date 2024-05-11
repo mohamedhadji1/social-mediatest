@@ -37,7 +37,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { EditUserDialogComponent } from './tools/edit-user-dialog/edit-user-dialog.component';
-
+import { ShowAcceptedRequestsComponent } from './tools/show-accepted-requests/show-accepted-requests.component';
+import { HistoriqueUserComponent } from './tools/historique-user/historique-user.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { EditUserDialogComponent } from './tools/edit-user-dialog/edit-user-dial
     ShowRequestComponent,
     ShowAllusersComponent,
     EditUserDialogComponent,
-    
+    ShowAcceptedRequestsComponent,
+    HistoriqueUserComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,8 @@ import { EditUserDialogComponent } from './tools/edit-user-dialog/edit-user-dial
     MatProgressSpinnerModule,
     MatInputModule,
     MatSelectModule,
-    
+    MatTableModule,
+
   ],
   providers: [
     FirebaseTSFirestore,

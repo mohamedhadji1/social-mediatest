@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+import { FirebaseTSFirestore, Where } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { Observable, Subject  } from 'rxjs';
 import { UserDocument } from 'src/app/app.component';
 
@@ -10,7 +10,9 @@ export class UserServiceService {
   private firestore = new FirebaseTSFirestore();
   private usersSubject = new Subject<UserDocument[]>();
 
-constructor() {this.loadUsers(); }
+      constructor() {
+        this.loadUsers();
+      }
 
 private loadUsers(): void {
   this.firestore.getCollection({
@@ -116,4 +118,38 @@ updateUser(user: UserDocument): Promise<void> {
 getUsers(): Observable<UserDocument[]> {
   return this.usersSubject.asObservable();
 }
+    getUserPosts(userId: string): Observable<any[]> {
+      return new Observable<any[]>(observer => {
+        this.firestore.getCollection({
+          path: ['Posts'],
+          where: [new Where ('creatorId', '==', userId)],
+          onComplete: (result) => {
+            const posts = result.docs.map(doc => doc.data());
+            observer.next(posts);
+            observer.complete();
+          },
+          onFail: (error) => {
+            console.error('Error loading user posts:', error);
+            observer.error(error);
+          }
+        });
+      });
+    }
+    getUserRequests(userId: string): Observable<any[]> {
+      return new Observable<any[]>(observer => {
+        this.firestore.getCollection({
+          path: ['demandes'],
+          where: [new Where ('userId', '==', userId)],
+          onComplete: (result) => {
+            const posts = result.docs.map(doc => doc.data());
+            observer.next(posts);
+            observer.complete();
+          },
+          onFail: (error) => {
+            console.error('Error loading user posts:', error);
+            observer.error(error);
+          }
+        });
+      });
+    }
 }
