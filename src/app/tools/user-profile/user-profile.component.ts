@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore'; // Import Firestore service
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth'; // Import Auth service
 import { FirebaseTSStorage } from 'firebasets/firebasetsStorage/firebaseTSStorage';
+import { Router } from '@angular/router';
 
 export interface UserDocument {
   publicName: string;
@@ -36,7 +37,7 @@ export class UserProfileComponent implements OnInit {
   firestore: FirebaseTSFirestore;
   auth: FirebaseTSAuth;
 
-  constructor() {
+  constructor(private router: Router) {
     this.firestore = new FirebaseTSFirestore(); // Initialize Firestore service
     this.auth = new FirebaseTSAuth(); // Initialize Auth service
     this.storage = new FirebaseTSStorage();
@@ -130,5 +131,8 @@ export class UserProfileComponent implements OnInit {
     if (fileInput) {
       fileInput.click();
     }
+  }
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 }

@@ -23,7 +23,20 @@
                   <span class="mb-0 text-sm  font-weight-bold">{{userProfileData?.firstName}} {{userProfileData?.lastName}}</span>
                 </div>
               </div>
-
+              <li class="nav-item" [matMenuTriggerFor]="menu">
+                <a class="nav-link" aria-haspopup="true" aria-expanded="false">
+                  <!-- Replace "Actions" text with an icon -->
+                  <mat-icon>arrow_drop_down</mat-icon> <!-- Font Awesome user icon -->
+                </a>
+                
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="navigateTo('/gestion-chercheur')">Gestion Chercheur</button>
+                  <button mat-menu-item (click)="navigateTo('/gestion-projet')">Gestion Projet</button>
+                  <button mat-menu-item (click)="navigateTo('/event')">Ajouter event</button>
+                  <button mat-menu-item (click)="navigateTo('/postfeed')">Gestion Post</button>
+                  <button mat-menu-item (click)="navigateTo('/gestion-post')">Logout</button>
+                </mat-menu>
+              </li>
         </ul>
       </div>
     </nav>

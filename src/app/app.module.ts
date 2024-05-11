@@ -40,6 +40,7 @@ import { EditUserDialogComponent } from './tools/edit-user-dialog/edit-user-dial
 import { ShowAcceptedRequestsComponent } from './tools/show-accepted-requests/show-accepted-requests.component';
 import { HistoriqueUserComponent } from './tools/historique-user/historique-user.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     MatSelectModule,
     MatTableModule,
+    MatMenuModule,
 
   ],
   providers: [
