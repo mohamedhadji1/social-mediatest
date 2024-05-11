@@ -1,51 +1,49 @@
-<div class="container">
-
-  <div class="request-list">
-    <h2>Gestion des demandes acceptées</h2>
-    <div class="search-container">
-      <form [formGroup]="searchForm">
-        <input type="text" formControlName="searchTerm" placeholder="Search events..." class="form-control">
-      </form>
-    </div>
-    <div class="table-container">
-
-      <div class="table-scroll">
-        <table class="table table-striped request-table">
-          <thead>
-
-            <tr>
-              <th>Nom de l'événement</th>
-              <th>Date de l'événement</th>
-              <th>Lieu de l'événement</th>
-              <th>Nombre de participants</th>
-              <th>Heure de l'événement</th>
-              <th>Action de l'événement</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let acceptedRequest of filteredRequests | async" class="request-row">
-              <td>{{ acceptedRequest.nomEven }}</td>
-              <td>{{ acceptedRequest.date }}</td>
-              <td>{{ acceptedRequest.lieu }}</td>
-              <td>{{ acceptedRequest.nombreParticipants }}</td>
-              <td>{{ acceptedRequest.heure }}</td>
-              <td class="actionevent" style="width: 60%;">
-                <button class="btn btn-success" (click)="acceptRequest(acceptedRequest.id)" style="display: flex;flex-direction: column;justify-content: center;color: white;margin-right: 8px;background: #048904;">
-                  Accepter
-                </button>
-                <button class="btn btn-danger" (click)="declineRequest(acceptedRequest.id)" style="display: flex;flex-direction: column;justify-content: center;color: white;margin-right: 8px;background: #e85252;">
-                  Refuser
-                </button>
-              </td>
-            </tr>
-          </tbody>
-
-        </table>
+<div class="main-container">
+  <app-sidebar></app-sidebar>
+  <div class="container" style="margin-left: 487px;"> <!-- Adjusted container to consider sidebar -->
+    <div class="request-list">
+      <h2>Gestion des demandes acceptées</h2>
+      <div class="search-container">
+        <form [formGroup]="searchForm">
+          <input type="text" formControlName="searchTerm" placeholder="Search events..." class="form-control">
+        </form>
       </div>
-    </div>
-    <div class="spinner-container" *ngIf="!(filteredRequests | async)">
-      <mat-progress-spinner color="primary" mode="indeterminate" diameter="70"></mat-progress-spinner>
+      <div class="table-container">
+        <div class="table-scroll">
+          <table class="table table-striped request-table">
+            <thead>
+              <tr>
+                <th>Nom de l'événement</th>
+                <th>Date de l'événement</th>
+                <th>Lieu de l'événement</th>
+                <th>Nombre de participants</th>
+                <th>Heure de l'événement</th>
+                <th>Action de l'événement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let acceptedRequest of filteredRequests | async" class="request-row">
+                <td>{{ acceptedRequest.nomEven }}</td>
+                <td>{{ acceptedRequest.date }}</td>
+                <td>{{ acceptedRequest.lieu }}</td>
+                <td>{{ acceptedRequest.nombreParticipants }}</td>
+                <td>{{ acceptedRequest.heure }}</td>
+                <td class="actionevent">
+                  <button class="btn btn-success" (click)="acceptRequest(acceptedRequest.id)">
+                    Accepter
+                  </button>
+                  <button class="btn btn-danger" (click)="declineRequest(acceptedRequest.id)">
+                    Refuser
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="spinner-container" *ngIf="!(filteredRequests | async)">
+        <mat-progress-spinner color="primary" mode="indeterminate" diameter="70"></mat-progress-spinner>
+      </div>
     </div>
   </div>
 </div>
-<app-sidebar></app-sidebar>
