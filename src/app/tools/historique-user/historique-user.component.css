@@ -35,6 +35,21 @@
     padding: 10px;
     grid-template-columns: 1fr;
   }
+
+  .request-table {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 15px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .request-table {
+    margin-top: 15px;
+  }
 }
 
 .card {
