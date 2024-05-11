@@ -8,20 +8,22 @@
   width: 80%; /* Adjusted width */
   margin: 0 auto; /* Centering the table */
   border-collapse: collapse;
-  display: contents;
+  display: block; /* Changed from contents to block for better control */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  border-radius: 8px; /* Rounded corners for a softer look */
 }
 
 .request-table th,
 .request-table td {
-  padding: 15px; /* More padding for better spacing */
+  padding: 10px; /* Adjusted padding for better spacing */
   text-align: left;
-  border-bottom: 2px solid #eaeaea; /* Lighter border for subtlety */
+  border-bottom: 1px solid #eaeaea; /* Lighter and thinner border for subtlety */
 }
 
 .request-table th {
   background-color: #007BFF; /* Updated to a more vibrant header color */
   color: white;
-  font-size: 16px; /* Larger font for better readability */
+  font-size: 14px; /* Adjusted font size for better readability */
 }
 
 .request-table tr:hover {
@@ -34,7 +36,18 @@
   padding: 20px;
 }
 
+@media (max-width: 1024px) {
+  .request-table {
+    width: 90%; /* Slightly wider on medium screens */
+  }
+}
+
 @media (max-width: 768px) {
+  .request-table {
+    width: 100%; /* Full width on smaller screens */
+    margin-top: 20px; /* Added top margin for better spacing */
+  }
+
   .request-table th, .request-table td {
     display: block;
     text-align: right; /* Align text to the right for consistency */
@@ -79,16 +92,15 @@
   overflow-x: auto; /* Handles overflow for smaller screens */
 }
 button {
-  width: 150px;
-  height: 50px;
+  width: 120px; /* Smaller width for a more compact look */
+  height: 40px; /* Reduced height */
   cursor: pointer;
   display: flex;
   align-items: center;
-  background: red;
+  background: #e62222;
   border: none;
   border-radius: 5px;
   box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-  background: #e62222;
  }
 
  button, button span {
@@ -96,7 +108,7 @@ button {
  }
 
  button .text {
-  transform: translateX(35px);
+  transform: translateX(20px); /* Adjusted for smaller button size */
   color: white;
   font-weight: bold;
  }
@@ -104,16 +116,16 @@ button {
  button .icon {
   position: absolute;
   border-left: 1px solid #c41b1b;
-  transform: translateX(110px);
-  height: 40px;
-  width: 40px;
+  transform: translateX(80px); /* Adjusted for smaller button size */
+  height: 30px; /* Adjusted for smaller button size */
+  width: 30px; /* Adjusted for smaller button size */
   display: flex;
   align-items: center;
   justify-content: center;
  }
 
  button svg {
-  width: 15px;
+  width: 12px; /* Smaller icon */
   fill: #eee;
  }
 
@@ -126,7 +138,7 @@ button {
  }
 
  button:hover .icon {
-  width: 150px;
+  width: 120px; /* Full width on hover */
   border-left: none;
   transform: translateX(0);
  }
@@ -138,3 +150,17 @@ button {
  button:active .icon svg {
   transform: scale(0.8);
  }
+
+.actionevent{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.table-container{
+  display: flex;
+  flex-direction: column;
+  max-width: 5000px;
+  margin: 20px auto;
+  animation: slideIn 0.5s ease-out;
+}
+

@@ -6,6 +6,7 @@ import { UserDocument } from 'src/app/app.component';
 import { UserServiceService } from 'src/services/UserService.service';
 import { map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
+import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-show-request',
   templateUrl: './show-request.component.html',
@@ -17,6 +18,7 @@ export class ShowRequestComponent implements OnInit {
   loading = true;
   isChercheur$!: Observable<boolean>;
   userRole: UserDocument | null = null;
+
   constructor(
     private addRequestService: AddRequestService,
     private router: Router,
@@ -33,6 +35,7 @@ export class ShowRequestComponent implements OnInit {
       );
     });
     this.requests = this.addRequestService.getRequests();
+
   }
   isChercheur(userList: UserDocument[]): boolean {
     return !!userList.find(user => user.role === 'chercheur');
@@ -61,4 +64,5 @@ export class ShowRequestComponent implements OnInit {
         console.error('Error declining request:', error);
       });
   }
+
 }

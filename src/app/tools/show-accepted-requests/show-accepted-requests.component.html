@@ -1,42 +1,51 @@
-<div class="request-list">
-  <h2>Liste des événements</h2>
-  <div class="sidebar-container">
-    <app-sidebar></app-sidebar>
-  </div>
-  <div class="table-container">
-    <div class="table-scroll">
-      <table class="request-table">
-        <thead>
-          <tr>
-            <th>Nom de l'événement</th>
-            <th>Date de l'événement</th>
-            <th>Lieu de l'événement</th>
-            <th>Nombre de participants</th>
-            <th>Heure de l'événement</th>
-            <th>Action de l'événement</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let acceptedRequest of acceptedRequests | async" class="request-row">
-            <td>{{ acceptedRequest.nomEven }}</td>
-            <td>{{ acceptedRequest.date }}</td>
-            <td>{{ acceptedRequest.lieu }}</td>
-            <td>{{ acceptedRequest.nombreParticipants }}</td>
-            <td>{{ acceptedRequest.heure }}</td>
-            <td>
-              <button class="btn btn-success" (click)="acceptRequest(acceptedRequest.id)" style="margin-right: 8px; background-color: green;"><span class="text">Accepter</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 11.5l3 3 7-7-1.5-1.5-5.5 5.5-1.5-1.5z"/></svg></span></button>
-              <button class="noselect" (click)="declineRequest(acceptedRequest.id)"><span class="text">Refuser</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container">
+
+  <div class="request-list">
+    <h2>Gestion des demandes acceptées</h2>
+    <div class="search-container">
+      <form [formGroup]="searchForm">
+        <input type="text" formControlName="searchTerm" placeholder="Search events..." class="form-control">
+      </form>
+    </div>
+    <div class="table-container">
+
+      <div class="table-scroll">
+        <table class="table table-striped request-table">
+          <thead>
+
+            <tr>
+              <th>Nom de l'événement</th>
+              <th>Date de l'événement</th>
+              <th>Lieu de l'événement</th>
+              <th>Nombre de participants</th>
+              <th>Heure de l'événement</th>
+              <th>Action de l'événement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let acceptedRequest of filteredRequests | async" class="request-row">
+              <td>{{ acceptedRequest.nomEven }}</td>
+              <td>{{ acceptedRequest.date }}</td>
+              <td>{{ acceptedRequest.lieu }}</td>
+              <td>{{ acceptedRequest.nombreParticipants }}</td>
+              <td>{{ acceptedRequest.heure }}</td>
+              <td class="actionevent" style="width: 60%;">
+                <button class="btn btn-success" (click)="acceptRequest(acceptedRequest.id)" style="display: flex;flex-direction: column;justify-content: center;color: white;margin-right: 8px;background: #048904;">
+                  Accepter
+                </button>
+                <button class="btn btn-danger" (click)="declineRequest(acceptedRequest.id)" style="display: flex;flex-direction: column;justify-content: center;color: white;margin-right: 8px;background: #e85252;">
+                  Refuser
+                </button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+    <div class="spinner-container" *ngIf="!(filteredRequests | async)">
+      <mat-progress-spinner color="primary" mode="indeterminate" diameter="70"></mat-progress-spinner>
     </div>
   </div>
-  <div class="spinner-container" *ngIf="!(acceptedRequests | async)">
-    <mat-progress-spinner
-      color="primary"
-      mode="indeterminate"
-      diameter="70"
-    ></mat-progress-spinner>
-  </div>
 </div>
+<app-sidebar></app-sidebar>
