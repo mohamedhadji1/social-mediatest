@@ -71,12 +71,20 @@
 @media (min-width: 768px) {
   .container {
     max-width: 800px; /* Fixed max width for laptops and above */
+    margin-left: 200px; /* Adjusted margin to consider sidebar */
   }
 
   .actionevent {
     width: 30%; /* Original width for non-mobile devices */
   }
 }
+
+@media (max-width: 767px) {
+  .container {
+    margin-left: 50px; /* Adjusted margin for mobile devices to consider a smaller sidebar */
+  }
+}
+
 .btns {
   display: flex;
   flex-direction: row;

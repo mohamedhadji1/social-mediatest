@@ -7,19 +7,19 @@
       <thead>
         <tr>
           <th>Image</th>
-          <th>First Name</th>
-          <th>Last Name</th>
+          <th>Prénom</th>
+          <th>Nom</th>
           <th>Email</th>
-          <th>Phone</th>
-          <th>Lab</th>
-          <th>Role</th>
-          <th>Specialization</th>
-          <th>University</th>
+          <th>Téléphone</th>
+          <th>Laboratoire</th>
+          <th>Rôle</th>
+          <th>Spécialisation</th>
+          <th>Université</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let user of users">
-          <td><img [src]="user.imageUrl" class="user-image" alt="User Image" /></td>
+          <td><img [src]="user.imageUrl" class="user-image" alt="Image Utilisateur" /></td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
           <td>{{ user.email }}</td>
@@ -28,16 +28,6 @@
           <td>{{ user.role }}</td>
           <td>{{ user.specialization }}</td>
           <td>{{ user.university }}</td>
-          <!-- <td>
-            <button (click)="deleteUser(user)">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </td>
-          <td>
-            <button (click)="modifyUser(user)">
-              <i class="fas fa-edit"></i>
-            </button>
-          </td>   -->
           <td>
             <button mat-icon-button (click)="deleteUser(user)">
               <mat-icon style="color: red;">delete</mat-icon>
@@ -48,7 +38,7 @@
               <mat-icon style="color: green;">edit</mat-icon>
             </button>
           </td>
-                  
+
         </tr>
       </tbody>
     </table>
