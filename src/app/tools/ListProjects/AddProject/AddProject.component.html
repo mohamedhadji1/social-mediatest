@@ -1,36 +1,42 @@
 <div class="container">
-  <h1>Add New Project</h1>
+  <h1>Ajouter un projet</h1>
   <form>
     <div class="form-group">
-      <label for="title">Title:</label>
+      <label for="title">Titre :</label>
       <input type="text" id="title" [(ngModel)]="project.title" name="title" class="form-control">
     </div>
     <div class="form-group">
-      <label for="description">Description:</label>
+      <label for="description">Description :</label>
       <textarea id="description" [(ngModel)]="project.description" name="description" class="form-control"></textarea>
     </div>
     <div class="form-group">
-      <label for="isPublic">Public:</label>
+      <label for="isPublic">Public :</label>
       <input type="checkbox" id="isPublic" [(ngModel)]="project.isPublic" name="isPublic">
     </div>
     <div class="form-group">
-      <label for="searchAuthors">Search Authors:</label>
-      <input type="text" id="searchAuthors" [(ngModel)]="searchText" (input)="onSearchChange()" class="form-control" placeholder="Search by email">
-      <ul multiple class="list-group">
-        <li *ngFor="let author of filteredAuthors" (click)="addAuthor(author)" class="list-group-item">{{ author }}</li>
-      </ul>
+      <label for="searchAuthors">Rechercher des auteurs :</label>
+      <div class="search-container">
+        <input type="text" class="search__input" placeholder="Rechercher des auteurs..." [(ngModel)]="searchText" (input)="onSearchInput($event)">
+        <div *ngIf="searchText.length >= 3 && filteredAuthors.length > 0" class="dropdown">
+          <ul>
+            <li *ngFor="let author of filteredAuthors" (click)="addAuthor(author)">
+              {{ author }}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="selected-authors">
+    <div class="selected-authors" style="display: flex;flex-direction: column;">
       <div *ngFor="let author of selectedAuthors">
         {{ author }}
-        <button type="button" (click)="removeAuthor(author)">Remove</button>
+        <button type="button" class="btn btn-danger" (click)="removeAuthor(author)">Supprimer</button>
       </div>
     </div>
     <div class="form-group">
-      <label for="file">Project PDF File:</label>
-      <input type="file" id="file" (change)="onFileSelected($event)" accept=".pdf" class="form-control">
+      <label for="file">Fichier PDF du projet :</label>
+      <input type="file" id="file" class="btn btn-primary" (change)="onFileSelected($event)" accept=".pdf" class="form-control">
     </div>
-    <button type="button" (click)="submitProject()" class="btn btn-primary">Submit Project</button>
+    <button type="button" (click)="submitProject()" class="btn btn-primary">Soumettre le projet</button>
   </form>
 </div>
 

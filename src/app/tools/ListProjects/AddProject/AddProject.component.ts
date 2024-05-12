@@ -83,7 +83,7 @@ export class AddProjectComponent implements OnInit {
   }
 
   removeAuthor(email: string) {
-    this.project.authors = this.project.authors.filter(author => author !== email);
+    this.selectedAuthors = this.selectedAuthors.filter(author => author !== email);
   }
 
   onFileSelected(event: Event) {
@@ -143,7 +143,8 @@ export class AddProjectComponent implements OnInit {
   }
   onSearchInput(event: Event) {
     const input = event.target as HTMLInputElement;
-    this.searchText$.next(input.value);
+    this.searchText = input.value;
+    this.searchText$.next(this.searchText);
   }
   fetchUserEmails() {
     this.userService.getUsersEmails().subscribe({
