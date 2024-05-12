@@ -1,0 +1,39 @@
+.project-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.project-card h2 {
+  color: #333;
+  font-size: 18px;
+}
+
+.text-muted {
+  color: #666;
+  font-size: 14px;
+}
+
+.project-card p {
+  color: #555;
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.actions button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.actions button:hover {
+  background-color: #0056b3;
+}
+

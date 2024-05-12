@@ -1,0 +1,9 @@
+<div class="project-card" *ngFor="let project of projects">
+  <h2>{{ project.title }}</h2>
+  <p class="text-muted">{{ project.date | date }}</p>
+  <p>{{ project.description }}</p>
+  <div class="actions">
+    <button (click)="downloadProject(project.fileUrl)">Download full-text</button>
+  </div>
+</div>
+

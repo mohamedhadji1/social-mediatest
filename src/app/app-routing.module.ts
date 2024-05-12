@@ -9,12 +9,13 @@ import { ShowRequestComponent } from './tools/show-request/show-request.componen
 import { ShowAllusersComponent } from './tools/show-Allusers/show-Allusers.component'
 import { ShowAcceptedRequestsComponent } from './tools/show-accepted-requests/show-accepted-requests.component';
 import { HistoriqueUserComponent } from './tools/historique-user/historique-user.component';
+import { AddProjectComponent } from './tools/ListProjects/AddProject/AddProject.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
   {path: "emailVerification", component: EmailVerificationComponent},
   { path: 'gestion-chercheur', component: HistoriqueUserComponent },
-  //{ path: 'gestion-projets', component: GestionProjetsComponent },
+  { path: 'gestion-projet', component: AddProjectComponent },
   { path: 'profil', component: UserProfileComponent },
   { path: 'postfeed', component: PostFeedComponent },
   { path: 'event', component: AddRequestComponent },

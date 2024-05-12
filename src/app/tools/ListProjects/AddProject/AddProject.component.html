@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Add New Project</h1>
+  <form>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" [(ngModel)]="project.title" name="title" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" [(ngModel)]="project.description" name="description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="isPublic">Public:</label>
+      <input type="checkbox" id="isPublic" [(ngModel)]="project.isPublic" name="isPublic">
+    </div>
+    <div class="form-group">
+      <label for="searchAuthors">Search Authors:</label>
+      <input type="text" id="searchAuthors" [(ngModel)]="searchText" (input)="onSearchChange()" class="form-control" placeholder="Search by email">
+      <ul multiple class="list-group">
+        <li *ngFor="let author of filteredAuthors" (click)="addAuthor(author)" class="list-group-item">{{ author }}</li>
+      </ul>
+    </div>
+    <div class="selected-authors">
+      <div *ngFor="let author of selectedAuthors">
+        {{ author }}
+        <button type="button" (click)="removeAuthor(author)">Remove</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="file">Project PDF File:</label>
+      <input type="file" id="file" (change)="onFileSelected($event)" accept=".pdf" class="form-control">
+    </div>
+    <button type="button" (click)="submitProject()" class="btn btn-primary">Submit Project</button>
+  </form>
+</div>
+

@@ -41,6 +41,9 @@ import { ShowAcceptedRequestsComponent } from './tools/show-accepted-requests/sh
 import { HistoriqueUserComponent } from './tools/historique-user/historique-user.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
+import { ListProjectsComponent } from './tools/ListProjects/ListProjects.component';
+import { AddProjectComponent } from './tools/ListProjects/AddProject/AddProject.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,8 @@ import { MatMenuModule } from '@angular/material/menu';
     EditUserDialogComponent,
     ShowAcceptedRequestsComponent,
     HistoriqueUserComponent,
-
+    ListProjectsComponent,
+    AddProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +90,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatTableModule,
     MatMenuModule,
-
+    HttpClientModule
   ],
   providers: [
     FirebaseTSFirestore,

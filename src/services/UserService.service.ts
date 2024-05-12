@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { FirebaseTSFirestore, Where } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { Observable, Subject  } from 'rxjs';
 import { UserDocument } from 'src/app/app.component';
+import { HttpClient } from '@angular/common/http';
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 
 @Injectable({
   providedIn: 'root'
@@ -9,147 +11,199 @@ import { UserDocument } from 'src/app/app.component';
 export class UserServiceService {
   private firestore = new FirebaseTSFirestore();
   private usersSubject = new Subject<UserDocument[]>();
+  private http: HttpClient;
+  private auth = new FirebaseTSAuth();
 
-      constructor() {
-        this.loadUsers();
-      }
+  constructor(http: HttpClient) {
+    this.http = http;
+    this.loadUsers();
+  }
 
-private loadUsers(): void {
-  this.firestore.getCollection({
-    path: ['Users'],
-    where : [],
-    onComplete: (result) => {
-      if (result.docs.length === 0) {
-        console.warn('No users found in the collection.');
-        this.usersSubject.next([]);
-      } else {
-        const users = result.docs.map((doc) => {
-          const data = doc.data();
-          // Ensure all fields are accessed correctly
-          return {
-            userId: doc.id,
-            publicName: data['publicName'] || '',
-            description: data['description'] || '',
-            imageUrl: data['imageUrl'] || '',
-            firstName: data['firstName'] || '',
-            lastName: data['lastName'] || '',
-            university: data['university'] || '',
-            email: data['email'] || '',
-            specialization: data['specialization'] || '',
-            lab: data['lab'] || '',
-            phone: data['phone'] || '',
-            role: data['role'] || '',
-          } as UserDocument;
-        });
-
-        this.usersSubject.next(users);
-      }
-    },
-    onFail: (error) => {
-      console.error('Error loading users:', error);
-      this.usersSubject.next([]); // Return an empty array on failure
-    },
-  });
-}
-deleteUser(userId: string): Promise<void> {
-  const documentPath = ['Users', userId];
-  console.log(`Attempting to delete document at path: ${documentPath.join('/')}`);
-
-  return new Promise<void>((resolve, reject) => {
-    this.firestore.getDocument({
-      path: documentPath,
+  private loadUsers(): void {
+    this.firestore.getCollection({
+      path: ['Users'],
+      where : [],
       onComplete: (result) => {
-        if (result.exists) {
-          console.log(`Document found. Deleting...`);
-          this.firestore.delete({
-            path: documentPath,
-            onComplete: () => {
-              console.log(`Document at path ${documentPath.join('/')} deleted.`);
-              resolve(); // Successful deletion
-            },
-            onFail: (error) => {
-              console.error(`Error deleting document: ${error}`);
-              reject(error);
-            },
-          });
+        if (result.docs.length === 0) {
+          console.warn('No users found in the collection.');
+          this.usersSubject.next([]);
         } else {
-          console.warn(`Document at path ${documentPath.join('/')} does not exist.`);
-          reject(new Error("Document not found"));
+          const users = result.docs.map((doc) => {
+            const data = doc.data();
+            // Ensure all fields are accessed correctly
+            return {
+              userId: doc.id,
+              publicName: data['publicName'] || '',
+              description: data['description'] || '',
+              imageUrl: data['imageUrl'] || '',
+              firstName: data['firstName'] || '',
+              lastName: data['lastName'] || '',
+              university: data['university'] || '',
+              email: data['email'] || '',
+              specialization: data['specialization'] || '',
+              lab: data['lab'] || '',
+              phone: data['phone'] || '',
+              role: data['role'] || '',
+            } as UserDocument;
+          });
+
+          this.usersSubject.next(users);
         }
       },
       onFail: (error) => {
-        console.error(`Error getting document: ${error}`);
-        reject(error);
+        console.error('Error loading users:', error);
+        this.usersSubject.next([]); // Return an empty array on failure
       },
     });
-  });
-}
+  }
 
-updateUser(user: UserDocument): Promise<void> {
-  // The Firestore document path to update
-  const documentPath = ['Users', user.userId];
+  deleteUser(userId: string): Promise<void> {
+    const documentPath = ['Users', userId];
+    console.log(`Attempting to delete document at path: ${documentPath.join('/')}`);
 
-  return new Promise<void>((resolve, reject) => {
-    this.firestore.update({
-      path: documentPath,
-      data: {
-        // Update these fields in Firestore
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        phone: user.phone,
-        lab: user.lab,
-        specialization: user.specialization,
-        university: user.university,
-        role: user.role,
-      },
-      onComplete: () => {
-        console.log(`User with ID ${user.userId} updated successfully.`);
-        resolve(); // Resolve the Promise when update is successful
-      },
-      onFail: (error) => {
-        console.error(`Error updating user with ID ${user.userId}:`, error);
-        reject(error); // Reject the Promise if an error occurs
-      },
+    return new Promise<void>((resolve, reject) => {
+      this.firestore.getDocument({
+        path: documentPath,
+        onComplete: (result) => {
+          if (result.exists) {
+            console.log(`Document found. Deleting...`);
+            this.firestore.delete({
+              path: documentPath,
+              onComplete: () => {
+                console.log(`Document at path ${documentPath.join('/')} deleted.`);
+                resolve(); // Successful deletion
+              },
+              onFail: (error) => {
+                console.error(`Error deleting document: ${error}`);
+                reject(error);
+              },
+            });
+          } else {
+            console.warn(`Document at path ${documentPath.join('/')} does not exist.`);
+            reject(new Error("Document not found"));
+          }
+        },
+        onFail: (error) => {
+          console.error(`Error getting document: ${error}`);
+          reject(error);
+        },
+      });
     });
-  });
+  }
+
+  updateUser(user: UserDocument): Promise<void> {
+    // The Firestore document path to update
+    const documentPath = ['Users', user.userId];
+
+    return new Promise<void>((resolve, reject) => {
+      this.firestore.update({
+        path: documentPath,
+        data: {
+          // Update these fields in Firestore
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          phone: user.phone,
+          lab: user.lab,
+          specialization: user.specialization,
+          university: user.university,
+          role: user.role,
+        },
+        onComplete: () => {
+          console.log(`User with ID ${user.userId} updated successfully.`);
+          resolve(); // Resolve the Promise when update is successful
+        },
+        onFail: (error) => {
+          console.error(`Error updating user with ID ${user.userId}:`, error);
+          reject(error); // Reject the Promise if an error occurs
+        },
+      });
+    });
+  }
+
+  getUsers(): Observable<UserDocument[]> {
+    return this.usersSubject.asObservable();
+  }
+
+  getUserPosts(userId: string): Observable<any[]> {
+    return new Observable<any[]>(observer => {
+      this.firestore.getCollection({
+        path: ['Posts'],
+        where: [new Where ('creatorId', '==', userId)],
+        onComplete: (result) => {
+          const posts = result.docs.map(doc => doc.data());
+          observer.next(posts);
+          observer.complete();
+        },
+        onFail: (error) => {
+          console.error('Error loading user posts:', error);
+          observer.error(error);
+        }
+      });
+    });
+  }
+
+  getUserRequests(userId: string): Observable<any[]> {
+    return new Observable<any[]>(observer => {
+      this.firestore.getCollection({
+        path: ['demandes'],
+        where: [new Where ('userId', '==', userId)],
+        onComplete: (result) => {
+          const posts = result.docs.map(doc => doc.data());
+          observer.next(posts);
+          observer.complete();
+        },
+        onFail: (error) => {
+          console.error('Error loading user posts:', error);
+          observer.error(error);
+        }
+      });
+    });
+  }
+
+  getUsersEmails(): Observable<string[]> {
+    return new Observable<string[]>(observer => {
+      this.firestore.getCollection({
+        path: ["Users"],
+        where: [],
+        onComplete: (result) => {
+          const emails = result.docs.map(doc => doc.data()['email']);
+          observer.next(emails);
+          observer.complete();
+        },
+        onFail: (error) => {
+          console.error('Failed to fetch user emails:', error);
+          observer.error(error);
+        }
+      });
+    });
+  }
+  getCurrentUserId(): string | null {
+    return this.auth.getAuth().currentUser?.uid || null;
+  }
+  getAuthorIdByEmail(email: string): Observable<string | null> {
+    return new Observable<string | null>(observer => {
+      this.firestore.getCollection({
+        path: ["Users"],
+        where: [
+          new Where("email", "==", email)
+        ],
+        onComplete: (result) => {
+          if (result.empty) {
+            observer.next(null);
+          } else {
+            // Assuming each email is unique and only one document per email
+            const firstDoc = result.docs[0];
+            observer.next(firstDoc.id);
+          }
+          observer.complete();
+        },
+        onFail: (error) => {
+          console.error('Failed to fetch author ID by email:', error);
+          observer.error(error);
+        }
+      });
+    });
+  }
 }
 
-getUsers(): Observable<UserDocument[]> {
-  return this.usersSubject.asObservable();
-}
-    getUserPosts(userId: string): Observable<any[]> {
-      return new Observable<any[]>(observer => {
-        this.firestore.getCollection({
-          path: ['Posts'],
-          where: [new Where ('creatorId', '==', userId)],
-          onComplete: (result) => {
-            const posts = result.docs.map(doc => doc.data());
-            observer.next(posts);
-            observer.complete();
-          },
-          onFail: (error) => {
-            console.error('Error loading user posts:', error);
-            observer.error(error);
-          }
-        });
-      });
-    }
-    getUserRequests(userId: string): Observable<any[]> {
-      return new Observable<any[]>(observer => {
-        this.firestore.getCollection({
-          path: ['demandes'],
-          where: [new Where ('userId', '==', userId)],
-          onComplete: (result) => {
-            const posts = result.docs.map(doc => doc.data());
-            observer.next(posts);
-            observer.complete();
-          },
-          onFail: (error) => {
-            console.error('Error loading user posts:', error);
-            observer.error(error);
-          }
-        });
-      });
-    }
-}
