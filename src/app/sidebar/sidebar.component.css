@@ -18,12 +18,17 @@
   background-color: #1a202c;
   padding: 1rem;
   z-index: 99;
-  transition: width 0.3s ease;
+  transition: width 0.3s ease, left 0.3s ease;
 }
 
 @media (max-width: 1024px) {
   .sidebar {
-    width: 12rem; /* Smaller width for tablets and mobile devices */
+    width: 0; /* Sidebar collapsed */
+    left: -16rem; /* Hide sidebar off-screen */
+  }
+  .sidebar.is-collapsed {
+    width: 16rem; /* Expand when clicked */
+    left: 0; /* Bring sidebar on-screen */
   }
 }
 
@@ -142,4 +147,20 @@
   display: flex;
   flex-direction: column; /* Stack vertically */
   align-items: center; /* Center horizontally */
+}
+
+/* Mobile Sidebar Toggle Icon */
+.navbar .mobile-sidebar-toggle {
+  display: none; /* Hide by default */
+}
+
+@media (max-width: 1024px) {
+  .navbar .mobile-sidebar-toggle {
+    display: block; /* Show toggle icon on mobile */
+    cursor: pointer;
+    font-size: 2rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
 }

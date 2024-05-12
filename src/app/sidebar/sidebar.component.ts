@@ -15,6 +15,7 @@ export class SidebarComponent implements OnInit {
   opened: boolean = false;
   loadedUser: UserDocument | undefined;
   userImageUrl: string | null = null;
+  isCollapsed: boolean = false; // Added property to resolve the error
   constructor(
     private firestore: FirebaseTSFirestore,
     private auth: FirebaseTSAuth,
