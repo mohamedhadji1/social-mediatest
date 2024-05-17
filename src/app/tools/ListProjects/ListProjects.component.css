@@ -4,14 +4,15 @@
   margin-bottom: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: #fff; /* Ensures the background is white */
 }
 
-.project-card h2 {
+.project-card h1, .project-card h2 { /* Adjusted to include h1 */
   color: #333;
-  font-size: 18px;
+  font-size: 24px; /* Larger size for h1 */
 }
 
-.text-muted {
+.date, .text-muted { /* Unified styling for date and muted text */
   color: #666;
   font-size: 14px;
 }
@@ -23,7 +24,7 @@
   margin-bottom: 15px;
 }
 
-.actions button {
+.buttons button, .actions button { /* Styling for all buttons in actions and buttons class */
   background-color: #007BFF;
   color: white;
   border: none;
@@ -33,7 +34,30 @@
   transition: background-color 0.3s;
 }
 
-.actions button:hover {
+.buttons button:hover, .actions button:hover { /* Hover effect for all buttons */
   background-color: #0056b3;
 }
 
+.authors .author img {
+  width: 50px; /* Example size, adjust as needed */
+  height: 50px; /* Example size, adjust as needed */
+  border-radius: 50%; /* Circular images */
+  margin-right: 10px;
+}
+
+.authors .author p {
+  display: inline-block; /* Align text next to image */
+  vertical-align: top; /* Align text top to match image top */
+}
+
+.authors .author img {
+  width: 50px; /* Example size, adjust as needed */
+  height: 50px; /* Example size, adjust as needed */
+  border-radius: 50%; /* Circular images */
+  margin-right: 10px;
+}
+
+.authors .author p {
+  display: inline-block; /* Align text next to image */
+  vertical-align: top; /* Align text top to match image top */
+}

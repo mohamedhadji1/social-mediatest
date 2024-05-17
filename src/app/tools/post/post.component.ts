@@ -137,4 +137,16 @@ export class PostComponent implements OnInit {
       }
     });
   }
+  convertTimestampToDate(timestamp: any): Date {
+   // Check if the timestamp object has a toDate method
+  if (timestamp && typeof timestamp.toDate === 'function') {
+    return timestamp.toDate();
+  } else if (timestamp && timestamp.seconds) {
+    // Manually convert using seconds if toDate is not available
+    return new Date(timestamp.seconds * 1000);
+  } else {
+    // Handle other cases or throw an error
+    throw new Error('Invalid timestamp object');
+  } // This converts the FirebaseTS timestamp to a Date object
+  }
 }

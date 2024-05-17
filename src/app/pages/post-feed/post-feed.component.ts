@@ -56,4 +56,5 @@ export interface PostData {
   postId: string;
   pdfUrl: string;
   pdfName: string;
+  timestamp: any;
 }

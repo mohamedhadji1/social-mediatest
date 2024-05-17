@@ -3,7 +3,7 @@
     <mat-card-title>Update Post</mat-card-title>
   </mat-card-header>
   <div>
-    <textarea id="comment" [(ngModel)]="data.comment" placeholder="Type Message..."></textarea>
+    <textarea id="comment" [(ngModel)]="data.comment" placeholder="Type Message..." [ngModelOptions]="{standalone: true}"></textarea>
   </div>
   <div *ngIf="imageUrl" id="post-preview">
     <img id="post-preview-image" [src]="imageUrl" />

@@ -19,7 +19,12 @@
       </li>
 
       <li class="item">
-        <a routerLink="/gestion-projet"><i class="fas fa-project-diagram"></i> Gestion Projet</a>
+        <a (click)="toggleDropdown()"><i class="fas fa-project-diagram"></i> Gestion Projet</a>
+        <div *ngIf="isDropdownOpen">
+          <a routerLink="/gestion-projet">Ajouter Projet</a>
+          <a routerLink="/listprojet">List Projet</a>
+          <a routerLink="/projet-public">Projet Public</a>
+        </div>
       </li>
 
       <li class="item" *ngIf="userProfileData?.role === 'chef laboratoire'">

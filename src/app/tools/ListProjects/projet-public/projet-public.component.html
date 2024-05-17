@@ -1,0 +1,22 @@
+<div class="public-projects-container">
+  <h1>Public Projects</h1>
+  <div *ngIf="projects.length === 0">
+    <p>No public projects available.</p>
+  </div>
+  <div *ngFor="let project of projects" class="project-card">
+    <div class="project-header">
+      <h2><a [routerLink]="['/projet-public', project.projectId]">{{ project.title }}</a></h2>
+    </div>
+    <p>{{ project.description }}</p>
+    <p>Posted by: <img *ngIf="project.userDetails?.imageUrl" [src]="project.userDetails?.imageUrl" alt="User Image" class="user-image" width="30" height="30"> {{ project.userDetails?.firstName }} {{ project.userDetails?.lastName }}</p>
+    <p>Date: {{ convertTimestampToDate(project.date) | date : "MMMM-dd-yyyy" }}</p>
+    <div *ngIf="project.authors && project.authors.length > 0">
+      <h3>Authors:</h3>
+      <ul class="authors-list">
+        <li *ngFor="let author of project.authors">
+          {{ author.firstName }} {{ author.lastName }} - {{ author.email }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

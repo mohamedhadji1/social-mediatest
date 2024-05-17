@@ -1,0 +1,78 @@
+.public-projects-container {
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.project-card {
+  background-color: white;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-card h2 {
+  color: #333;
+  font-size: 20px;
+  margin: 0;
+}
+
+.project-card p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 5px;
+}
+
+.project-card a {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.project-card a:hover {
+  background-color: #0056b3;
+}
+
+.authors ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 5px;
+}
+
+.authors li {
+  padding: 2px 0;
+}
+
+.menuedit {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.menu-icon {
+  cursor: pointer;
+  color: #007BFF;
+  font-size: 24px;
+}
+.user-image {
+  width: 50px; /* Set both width and height to the same value */
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover; /* This ensures the image covers the area without distorting aspect ratio */
+}

@@ -44,6 +44,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ListProjectsComponent } from './tools/ListProjects/ListProjects.component';
 import { AddProjectComponent } from './tools/ListProjects/AddProject/AddProject.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UpdateProjectComponent } from './tools/ListProjects/update-project/update-project.component';
+import { SafeUrlPipe } from './safe-url.pipe';
+import { ProjetPublicComponent } from './tools/ListProjects/projet-public/projet-public.component';
+import { DisplayProjectIDComponent } from './tools/ListProjects/display-project-id/display-project-id.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -67,8 +72,14 @@ import { HttpClientModule } from '@angular/common/http';
     EditUserDialogComponent,
     ShowAcceptedRequestsComponent,
     HistoriqueUserComponent,
+    AddProjectComponent,
     ListProjectsComponent,
-    AddProjectComponent
+    PostmenudialogComponent,
+    UpdateProjectComponent,
+    SafeUrlPipe,
+    ProjetPublicComponent,
+    DisplayProjectIDComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +101,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatTableModule,
     MatMenuModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [
     FirebaseTSFirestore,

@@ -16,6 +16,8 @@ export class SidebarComponent implements OnInit {
   loadedUser: UserDocument | undefined;
   userImageUrl: string | null = null;
   isCollapsed: boolean = false; // Added property to resolve the error
+  isDropdownOpen: boolean = false; // Added to control dropdown visibility
+
   constructor(
     private firestore: FirebaseTSFirestore,
     private auth: FirebaseTSAuth,
@@ -74,6 +76,9 @@ export class SidebarComponent implements OnInit {
 
   toggleSidebar() {
     this.opened = !this.opened;
+  }
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
   logout() {
     this.auth.signOut().then(() => {

@@ -1,0 +1,12 @@
+<h2>Update Project</h2>
+<form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+  <mat-form-field>
+    <mat-label>title</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+  <button mat-button type="submit">Update</button>
+</form>

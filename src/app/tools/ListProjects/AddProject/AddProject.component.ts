@@ -6,21 +6,32 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 
-interface User {
-  email: string;
-}
-
 export interface Project {
   title: string;
   description: string;
   isPublic: boolean;
-  authors: string[];
+  authors: UserDocument[];
   pdfUrl?: string;
   pdfFileName?: string;
-  date: Date;
-  postedBy: string; // Added property for current user ID // Added property for selected author ID
+  date: any;
+  postedBy: string;
+  projectId: string;
+  userDetails?: UserDocument;
 }
-
+export interface UserDocument {
+  publicName: string;
+  description: string;
+  userId: string;
+  imageUrl:string;
+  firstName: string;
+  lastName: string;
+  university: string;
+  email: string;
+  specialization: string;
+  lab: string;
+  phone: string;
+  role: string;
+}
 @Component({
   selector: 'app-AddProject',
   templateUrl: './AddProject.component.html',
@@ -34,10 +45,13 @@ export class AddProjectComponent implements OnInit {
     isPublic: false,
     authors: [],
     date: new Date(),
-    postedBy: '', // Initialize with empty string
+    postedBy: '',
+    projectId: ''
   };
-  allAuthors: string[] = ['author1@example.com']; // Example authors
-  selectedAuthors: string[] = [];
+
+  allAuthors: string[] = [];
+  allUsers: UserDocument[] = []; // Example authors
+  selectedAuthors: UserDocument[] = [];
   searchText: string = '';
   searchText$: Subject<string> = new Subject<string>();
   filteredAuthors: string[] = [];
@@ -46,14 +60,13 @@ export class AddProjectComponent implements OnInit {
   private auth = new FirebaseTSAuth();
   ngOnInit() {
     this.userService.getUsers().subscribe({
-      next: (users: User[]) => {
-        this.allAuthors = users.map(user => user.email); // Assuming currentUser has an 'id' field
+      next: (users: UserDocument[]) => {
+        this.allUsers = users; // Assuming currentUser has an 'id' field
+        this.allAuthors = users.map(user => user.email);
       },
       error: (error: any) => console.error('Error fetching current user:', error)
     });
     this.filteredAuthors = this.allAuthors;
-
-
     this.searchText$.pipe(
       debounceTime(300),
       distinctUntilChanged()
@@ -74,16 +87,15 @@ export class AddProjectComponent implements OnInit {
   }
   constructor(private userService: UserServiceService) {}
 
-  addAuthor(author: string) {
-    if (!this.selectedAuthors.includes(author)) {
-      this.selectedAuthors.push(author);
+  addAuthor(email: string) {
+    const user = this.allUsers.find(user => user.email === email);
+    if (user && !this.selectedAuthors.some(author => author.email === email)) {
+      this.selectedAuthors.push(user);
     }
-    this.searchText = ''; // Clear search text
-    this.filteredAuthors = []; // Clear filtered authors
   }
 
   removeAuthor(email: string) {
-    this.selectedAuthors = this.selectedAuthors.filter(author => author !== email);
+    this.selectedAuthors = this.selectedAuthors.filter(author => author.email !== email);
   }
 
   onFileSelected(event: Event) {
@@ -94,9 +106,7 @@ export class AddProjectComponent implements OnInit {
   submitProject() {
     if (this.currentUserId) {
       this.project.postedBy = this.currentUserId;
-      // Directly use selectedAuthors, ensuring only manually selected authors are added
-      this.project.authors = [...this.selectedAuthors];
-
+      this.project.authors = this.selectedAuthors; // Directly use the selected UserDocument objects
       if (this.selectedFile) {
         const storage = new FirebaseTSStorage();
         const uploadPath = `projectFiles/${this.selectedFile.name}`;

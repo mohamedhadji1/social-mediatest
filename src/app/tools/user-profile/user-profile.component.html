@@ -28,7 +28,7 @@
                   <!-- Replace "Actions" text with an icon -->
                   <mat-icon>arrow_drop_down</mat-icon> <!-- Font Awesome user icon -->
                 </a>
-                
+
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item (click)="navigateTo('/gestion-chercheur')">Gestion Chercheur</button>
                   <button mat-menu-item (click)="navigateTo('/gestion-projet')">Gestion Projet</button>
@@ -120,13 +120,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="firstName">First Name</label>
-                        <input type="text" class="form-control form-control-alternative" id="firstName" [(ngModel)]="firstNameInput" name="firstName" value="{{userProfileData?.firstName}}">
+                        <input type="text" class="form-control form-control-alternative" id="firstName" [(ngModel)]="firstNameInput" name="firstName" value="{{userProfileData?.firstName}}" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="lastName">Last Name</label>
-                        <input type="text" class="form-control form-control-alternative" id="lastName" [(ngModel)]="lastNameInput" name="lastName" value="{{userProfileData?.lastName}}">
+                        <input type="text" class="form-control form-control-alternative" id="lastName" [(ngModel)]="lastNameInput" name="lastName" value="{{userProfileData?.lastName}}" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                   </div>
@@ -134,13 +134,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="university">University</label>
-                        <input type="text" class="form-control form-control-alternative" id="university" [(ngModel)]="universityInput" name="university" value="{{userProfileData?.university}}">
+                        <input type="text" class="form-control form-control-alternative" id="university" [(ngModel)]="universityInput" name="university" value="{{userProfileData?.university}}" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="email">Email address</label>
-                        <input type="email" class="form-control form-control-alternative" id="email" [(ngModel)]="emailInput" name="email" value="{{ userProfileData?.email }}">
+                        <input type="email" class="form-control form-control-alternative" id="email" [(ngModel)]="emailInput" name="email" value="{{ userProfileData?.email }}" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                   </div>
@@ -148,13 +148,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="lab">Lab</label>
-                        <input type="text" class="form-control form-control-alternative" id="lab" [(ngModel)]="labInput" name="lab" value="{{userProfileData?.lab}}">
+                        <input type="text" class="form-control form-control-alternative" id="lab" [(ngModel)]="labInput" name="lab" value="{{userProfileData?.lab}}" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="phone">Phone</label>
-                        <input type="text" class="form-control form-control-alternative" id="phone" [(ngModel)]="phoneInput" name="phone" value="{{userProfileData?.phone}}">
+                        <input type="text" class="form-control form-control-alternative" id="phone" [(ngModel)]="phoneInput" name="phone" value="{{userProfileData?.phone}}" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                   </div>
@@ -162,7 +162,7 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="specialization">Specialization</label>
-                        <input type="text" class="form-control form-control-alternative" id="specialization" [(ngModel)]="specializationInput" name="specialization" value="{{userProfileData?.specialization}}">
+                        <input type="text" class="form-control form-control-alternative" id="specialization" [(ngModel)]="specializationInput" name="specialization" value="{{userProfileData?.specialization}}" [ngModelOptions]="{standalone: true}">
                       </div>
                     </div>
                   </div>

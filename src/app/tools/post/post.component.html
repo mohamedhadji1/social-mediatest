@@ -6,8 +6,8 @@
 </div>
 <mat-card>
   <mat-card-header style="display: flex;justify-content: space-between;">
-    <mat-card-title>{{ creatorName }}</mat-card-title>
-    <mat-card-subtitle>{{ creatorDescription }}</mat-card-subtitle>
+    <mat-card-title>{{ loadedUser?.firstName }} {{ loadedUser?.lastName }}</mat-card-title>
+    <mat-card-title>{{ convertTimestampToDate(postData.timestamp) | date: 'MMMM-dd-yyyy' }}</mat-card-title>    <mat-card-subtitle>{{ creatorDescription }}</mat-card-subtitle>
     <div class="icon">
       <mat-icon class="menu-icon" #menuIcon *ngIf="postData.creatorId === currentUserId" (click)="openMenu(postData)">more_horiz</mat-icon>
     </div>

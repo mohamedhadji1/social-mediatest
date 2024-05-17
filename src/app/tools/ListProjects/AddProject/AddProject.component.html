@@ -1,22 +1,22 @@
-<div class="container">
+<div class="container" style="margin-right: 310px;">
   <h1>Ajouter un projet</h1>
   <form>
     <div class="form-group">
       <label for="title">Titre :</label>
-      <input type="text" id="title" [(ngModel)]="project.title" name="title" class="form-control">
+      <input type="text" id="title" [(ngModel)]="project.title" [ngModelOptions]="{standalone: true}" name="title" class="form-control">
     </div>
     <div class="form-group">
       <label for="description">Description :</label>
-      <textarea id="description" [(ngModel)]="project.description" name="description" class="form-control"></textarea>
+      <textarea id="description" [(ngModel)]="project.description" [ngModelOptions]="{standalone: true}" name="description" class="form-control"></textarea>
     </div>
     <div class="form-group">
       <label for="isPublic">Public :</label>
-      <input type="checkbox" id="isPublic" [(ngModel)]="project.isPublic" name="isPublic">
+      <input type="checkbox" id="isPublic" [(ngModel)]="project.isPublic" name="isPublic" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
       <label for="searchAuthors">Rechercher des auteurs :</label>
       <div class="search-container">
-        <input type="text" class="search__input" placeholder="Rechercher des auteurs..." [(ngModel)]="searchText" (input)="onSearchInput($event)">
+        <input type="text" class="search__input" placeholder="Rechercher des auteurs..." [(ngModel)]="searchText" (input)="onSearchInput($event)" [ngModelOptions]="{standalone: true}">
         <div *ngIf="searchText.length >= 3 && filteredAuthors.length > 0" class="dropdown">
           <ul>
             <li *ngFor="let author of filteredAuthors" (click)="addAuthor(author)">
@@ -28,8 +28,8 @@
     </div>
     <div class="selected-authors" style="display: flex;flex-direction: column;">
       <div *ngFor="let author of selectedAuthors">
-        {{ author }}
-        <button type="button" class="btn btn-danger" (click)="removeAuthor(author)">Supprimer</button>
+        {{ author.email }}
+        <button type="button" class="btn btn-danger" (click)="removeAuthor(author.email)">Supprimer</button>
       </div>
     </div>
     <div class="form-group">
@@ -39,4 +39,4 @@
     <button type="button" (click)="submitProject()" class="btn btn-primary">Soumettre le projet</button>
   </form>
 </div>
-
+<app-sidebar></app-sidebar>
