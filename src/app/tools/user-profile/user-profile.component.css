@@ -2062,3 +2062,17 @@ h4{
 h4:hover{
   text-decoration: underline;
 }
+.selected-tab {
+  background-color: #2e385e;
+  color: white; 
+  padding: 11px 20px;
+  border-radius: 23px;
+  margin-right: 10px;
+}
+
+.unselected-tab {
+  background-color: white;
+  color: black; 
+  padding: 11px 20px;
+  margin-right: 10px;
+}

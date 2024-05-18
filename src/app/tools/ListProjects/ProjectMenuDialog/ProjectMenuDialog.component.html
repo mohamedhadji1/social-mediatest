@@ -1,13 +1,13 @@
 <h2 mat-dialog-title class="dialog-title">Project Menu</h2>
 <div mat-dialog-content class="dialog-content">
-  <p class="options-title">Options for project:</p>
+  <p class="options-title">Options for project : </p>
   <ul class="options-list">
     <li>
-      <span class="option-label" (click)="onUpdateProject(data)">Update</span>
+      <span class="option-label update" (click)="onUpdateProject(data)">Update</span>
     </li>
     <hr class="separator">
     <li>
-      <span class="option-label" (click)="onDeleteProject(data.projectId)">Delete</span>
+      <span class="option-label delete" (click)="onDeleteProject(data.projectId)">Delete</span>
     </li>
   </ul>
 </div>

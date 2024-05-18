@@ -103,7 +103,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-8 order-xl-1">
+        <!-- <div class="col-xl-8 order-xl-1">
           <div class="card bg-secondary shadow">
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
@@ -120,7 +120,38 @@
               <app-profile-proje></app-profile-proje>
             </div>
           </div>
+        </div> -->
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8" style="display: flex;">
+                  <h4 
+                    (click)="toggleProfileChercheur()"
+                    [ngClass]="{'selected-tab': displayProfileChercheur, 'unselected-tab': !displayProfileChercheur}" 
+                    style="cursor: pointer; margin-left: 10px;"
+                  >
+                    My account
+                  </h4>
+                  <h4 
+                    (click)="toggleProjects()"
+                    [ngClass]="{'selected-tab': displayProjects, 'unselected-tab': !displayProjects}" 
+                    style="cursor: pointer; margin-left: 10px;"
+                  >
+                    My projects
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div class="card-body" *ngIf="displayProfileChercheur">
+              <app-profile-chercheur></app-profile-chercheur>
+            </div>
+            <div class="card-body" *ngIf="displayProjects">
+              <app-profile-proje></app-profile-proje>
+            </div>
+          </div>
         </div>
+        
       </div>
     </div>
   </div>

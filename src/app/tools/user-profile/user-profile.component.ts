@@ -144,12 +144,14 @@ export class UserProfileComponent implements OnInit {
   showUserProfile() {
     this.showProfile = true;
   }
-  displayProfileChercheur: boolean = false;
+  displayProfileChercheur: boolean = true;
 
   toggleProfileChercheur(): void {
-    this.displayProfileChercheur = !this.displayProfileChercheur;
+    this.displayProfileChercheur = true;
+    this.displayProjects = false;
   }
   toggleProjects() {
-    this.displayProjects = !this.displayProjects;
+    this.displayProjects = true;
+    this.displayProfileChercheur = false;
   }
 }
