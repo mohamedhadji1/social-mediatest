@@ -1,20 +1,19 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
-import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
-import { Project } from './AddProject/AddProject.component';
-import { ProjectService } from 'src/services/Project.service';
-import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
-import { UserDocument } from 'src/app/app.component';  // Corrected import path
-import { Timestamp } from '@firebase/firestore-types';
-import { MatDialog } from '@angular/material/dialog';
-import { ProjectMenuDialogComponent } from './ProjectMenuDialog/ProjectMenuDialog.component';
+import { Component, Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Project } from '../tools/ListProjects/AddProject/AddProject.component';
+import { ProjectMenuDialogComponent } from '../tools/ListProjects/ProjectMenuDialog/ProjectMenuDialog.component';
+import { UserDocument } from '../app.component';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+import { ProjectService } from 'src/services/Project.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 
 @Component({
-  selector: 'app-ListProjects',
-  templateUrl: './ListProjects.component.html',
-  styleUrls: ['./ListProjects.component.css']
+  selector: 'app-profile-proje',
+  templateUrl: './profile-proje.component.html',
+  styleUrls: ['./profile-proje.component.css']
 })
-export class ListProjectsComponent implements OnInit {
+export class ProfileProjeComponent {
   projects: Project[] = [];
   currentUserId: string = '';
   private auth = new FirebaseTSAuth();
@@ -87,7 +86,7 @@ export class ListProjectsComponent implements OnInit {
     this.projectService.getProjectsByUserId(this.currentUserId).subscribe({
       next: (projects: Project[]) => {
         this.projects = projects;
-        
+
       },
       error: (err) => console.error(err)
     });
@@ -116,3 +115,4 @@ export class SafeUrlPipe implements PipeTransform {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
+

@@ -37,7 +37,6 @@ export class HistoriqueUserComponent implements OnInit {
     // Fetch user-specific posts
     this.userService.getUserPosts(userId).subscribe(posts => {
       this.userPosts = posts;
-      console.log('dirra' , posts)
     });
   }
   fetchUserRequests(userId: string): void {

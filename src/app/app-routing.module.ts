@@ -13,6 +13,7 @@ import { AddProjectComponent } from './tools/ListProjects/AddProject/AddProject.
 import { ListProjectsComponent } from './tools/ListProjects/ListProjects.component';
 import { ProjetPublicComponent } from './tools/ListProjects/projet-public/projet-public.component';
 import { DisplayProjectIDComponent } from './tools/ListProjects/display-project-id/display-project-id.component';
+import { ProfileChercheurComponent } from './profile-chercheur/profile-chercheur.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'showRequest', component: ShowRequestComponent },
   { path: 'showRequestrespo', component: ShowAcceptedRequestsComponent },
   { path: 'ListUser', component: ShowAllusersComponent },
+  { path: 'profile-chercheur', component: ProfileChercheurComponent },
   {path: "**", component: HomeComponent}
 ];
 

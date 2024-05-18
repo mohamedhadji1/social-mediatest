@@ -49,6 +49,8 @@ import { SafeUrlPipe } from './safe-url.pipe';
 import { ProjetPublicComponent } from './tools/ListProjects/projet-public/projet-public.component';
 import { DisplayProjectIDComponent } from './tools/ListProjects/display-project-id/display-project-id.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ProfileChercheurComponent } from './profile-chercheur/profile-chercheur.component';
+import { ProfileProjeComponent } from './profile-proje/profile-proje.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     SafeUrlPipe,
     ProjetPublicComponent,
     DisplayProjectIDComponent,
-    NavBarComponent
+    NavBarComponent,
+    ProfileChercheurComponent,
+    ProfileProjeComponent
   ],
   imports: [
     BrowserModule,

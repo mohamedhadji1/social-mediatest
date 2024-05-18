@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="main-content">
+    <div *ngFor="let project of projects" class="project-card">
+      <div class="menuedit" style="position: relative; z-index: 1000; display: flex; flex-direction: row-reverse;">
+      <mat-icon class="menu-icon" *ngIf="project.postedBy === currentUserId"(click)="openProjectMenu(project)" style="transform: rotate(90deg);">more_vert</mat-icon>
+      </div>
+      <h1>{{ project.title }}</h1>
+      <p class="date">
+        {{ convertTimestampToDate(project.date) | date : "MMMM-dd-yyyy" }}
+      </p>
+      <p>{{ project.description }}</p>
+      <div class="authors" style="display: flex;">
+        Authors:
+        <div *ngFor="let author of project.authors" class="author" style="display: flex; flex-direction: row; align-items: center;">
+          <img [src]="userProfileData?.imageUrl" alt="{{ userProfileData?.firstName }}" style="width: 50px; height: 50px; border-radius: 50%; display: flex;"/>
+          <p style="display: flex;">
+            {{ userProfileData?.firstName }} {{ userProfileData?.lastName}}<br/>{{ userProfileData?.university }}
+            <div style="display: flex;">
+              <img [src]="project.authors[0].imageUrl" alt="{{ project.authors[0].firstName }}" style="width: 50px; height: 50px; border-radius: 50%; display:flex; margin-left: 20px; margin-right: 20px;" />
+              <p><strong></strong>{{ getAuthorsEmails(project) }}</p>
+            </div>
+        </div>
+      </div>
+      <div class="buttons" >
+        <button (click)="downloadProject(projects[0].pdfUrl || '')" class="btn btn-info">Download file PDF</button>
+        <button (click)="setActiveProject(project)" class="btn btn-info">{{ activeProject?.projectId === project.projectId ? 'Close PDF' : 'View PDF' }}</button>
+      </div>
+        <iframe *ngIf="activeProject && activeProject.pdfUrl" [src]="activeProject.pdfUrl | safeUrl" style="width:100%; height:500px;" type="application/pdf"></iframe>
+    </div>
+  </div>
+</div>
+
+

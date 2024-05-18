@@ -1,0 +1,36 @@
+#nav-bar {
+  background-color: transparent; /* Ensure navbar background is transparent */
+  padding: 10px; /* Optional: Add some padding for better spacing */
+  position: fixed; /* Fix the navbar at the top */
+  width: 100%; /* Make the navbar span the full width */
+  top: 0; /* Align it to the top */
+  z-index: 1000; /* Ensure it is above other content */
+}
+
+#nav-bar-content {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+  align-items: center; /* Center items vertically */
+}
+
+.nav-bar-items {
+  margin-left: 20px; /* Space between items */
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px; /* Rounded corners */
+  color: white; /* Text color for nav-bar-items */
+  background-color: transparent; /* Ensure items background is transparent */
+}
+
+.nav-bar-items:hover {
+  background-color: rgba(85, 85, 85, 0.5); /* Light grey background on hover */
+}
+
+.nav-bar-items a {
+  color: inherit; /* Inherits white color */
+  text-decoration: none;
+}
+
+.nav-bar-items a:hover {
+  text-decoration: underline;
+}

@@ -107,69 +107,17 @@
           <div class="card bg-secondary shadow">
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0">My account</h3>
+                <div class="col-8" style="display: flex;">
+                  <h4 (click)="toggleProfileChercheur()" style="cursor: pointer; margin-left: 10px;">My account</h4>
+                  <h4 (click)="toggleProjects()" style="cursor: pointer; margin-left: 10px; ">My projects</h4>
                 </div>
               </div>
             </div>
-            <div class="card-body">
-              <form (ngSubmit)="updateUserProfile()">
-                <h6 class="heading-small text-muted mb-4">User Information</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="firstName">First Name</label>
-                        <input type="text" class="form-control form-control-alternative" id="firstName" [(ngModel)]="firstNameInput" name="firstName" value="{{userProfileData?.firstName}}" [ngModelOptions]="{standalone: true}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="lastName">Last Name</label>
-                        <input type="text" class="form-control form-control-alternative" id="lastName" [(ngModel)]="lastNameInput" name="lastName" value="{{userProfileData?.lastName}}" [ngModelOptions]="{standalone: true}">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="university">University</label>
-                        <input type="text" class="form-control form-control-alternative" id="university" [(ngModel)]="universityInput" name="university" value="{{userProfileData?.university}}" [ngModelOptions]="{standalone: true}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="email">Email address</label>
-                        <input type="email" class="form-control form-control-alternative" id="email" [(ngModel)]="emailInput" name="email" value="{{ userProfileData?.email }}" [ngModelOptions]="{standalone: true}">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="lab">Lab</label>
-                        <input type="text" class="form-control form-control-alternative" id="lab" [(ngModel)]="labInput" name="lab" value="{{userProfileData?.lab}}" [ngModelOptions]="{standalone: true}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="phone">Phone</label>
-                        <input type="text" class="form-control form-control-alternative" id="phone" [(ngModel)]="phoneInput" name="phone" value="{{userProfileData?.phone}}" [ngModelOptions]="{standalone: true}">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group focused">
-                        <label class="form-control-label" for="specialization">Specialization</label>
-                        <input type="text" class="form-control form-control-alternative" id="specialization" [(ngModel)]="specializationInput" name="specialization" value="{{userProfileData?.specialization}}" [ngModelOptions]="{standalone: true}">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr class="my-4">
-                <button type="submit" class="btn btn-info">Update Profile</button>
-              </form>
+            <div class="card-body" *ngIf="displayProfileChercheur">
+              <app-profile-chercheur></app-profile-chercheur>
+            </div>
+            <div class="card-body" *ngIf="displayProjects">
+              <app-profile-proje></app-profile-proje>
             </div>
           </div>
         </div>

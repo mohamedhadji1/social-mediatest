@@ -19,11 +19,11 @@
       </li>
 
       <li class="item">
-        <a (click)="toggleDropdown()"><i class="fas fa-project-diagram"></i> Gestion Projet</a>
+        <a (click)="toggleDropdown()"><i class="fas fa-project-diagram"></i> Gestion Publication</a>
         <div *ngIf="isDropdownOpen">
-          <a routerLink="/gestion-projet">Ajouter Projet</a>
-          <a routerLink="/listprojet">List Projet</a>
-          <a routerLink="/projet-public">Projet Public</a>
+          <a routerLink="/gestion-projet">Ajouter Publication</a>
+          <a routerLink="/listprojet">List Publication</a>
+          <a routerLink="/projet-public">Publication Public</a>
         </div>
       </li>
 
@@ -37,7 +37,7 @@
         <a routerLink="/event"><i class="fas fa-calendar-alt"></i> Ajouter event</a>
       </li>
       <li class="item">
-        <a routerLink="/postfeed"><i class="fas fa-newspaper"></i> Gestion Post</a>
+        <a routerLink="/postfeed"><i class="fas fa-newspaper"></i> Gestion Publication</a>
       </li>
 
       <li class="item" *ngIf="userProfileData?.role === 'responsable universitaire'">

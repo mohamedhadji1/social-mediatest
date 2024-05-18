@@ -1,20 +1,12 @@
-.public-projects-container {
-  width: 90%;
-  margin: auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  z-index: 1000;
-}
-
 .project-card {
   background-color: white;
-  padding: 15px;
-  margin-top: 10px;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   position: relative;
+  width: 50%;
+  margin-left: 535px;
 }
 
 .project-header {
@@ -23,103 +15,132 @@
   align-items: center;
 }
 
-.project-card h2 {
+.project-header h1 {
   color: #333;
-  font-size: 20px;
+  font-size: 24px;
   margin: 0;
+}
+
+.project-header button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.project-header button:hover {
+  background-color: #0056b3;
 }
 
 .project-card p {
   color: #666;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
-.project-card a, .pdf-buttons a, .btn-download a, .btn-read a, .pdf-viewer a, .menuedit a {
-  display: inline-block;
-  padding: 10px;
-  background-color: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+.authors {
+  margin-top: 20px;
 }
 
-.project-card a:hover, .pdf-buttons a:hover, .btn-download:hover, .btn-read:hover, .menuedit:hover {
-  background-color: #0056b3;
+.authors h3 {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .authors ul {
   list-style-type: none;
   padding: 0;
-  margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .authors li {
-  padding: 2px 0;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 10px;
 }
 
-.menuedit {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  display: inline-block;
-  padding: 10px;
-  background-color: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.menu-icon {
-  cursor: pointer;
-  color: #007BFF;
-  font-size: 24px;
-}
-
-.user-image {
+.authors li img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  margin-right: 10px;
+}
+
+.authors li div {
+  display: flex;
+  flex-direction: column;
+}
+
+.authors li div strong {
+  color: #333;
+  font-size: 16px;
+}
+
+.authors li div span {
+  color: #666;
+  font-size: 14px;
+}
+
+.pdf-actions {
+  margin-top: 20px;
 }
 
 .pdf-buttons {
   display: flex;
+  align-items: center;
   gap: 10px;
   justify-content: center;
-  padding: 20px;
 }
 
-.btn-download {
-  background-color: #4CAF50;
+.pdf-thumbnail {
+  width: 100px;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.btn-read {
-  background-color: #008CBA;
-}
-.container {
+.pdf-buttons-container {
   display: flex;
-  width: 50%; /* Set the container width to 50% */
-  margin: 0 auto; /* Center the container horizontally */
+}
+container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.sidebar {
-  width: 250px; /* Adjust width as necessary */
-  height: 100vh; /* Full height */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #111; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+.btn-download, .btn-read {
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-.content {
-  flex-grow: 1; /* Take up the remaining space */
-  padding: 1px 16px;
-  height: 1000px; /* Sample height */
-}
+  .btn-download {
+    background-color: #4CAF50;
+    }
+    .btn-download:hover {
+    background-color: #45a049;
+    }
+    .btn-read {
+    background-color: #008CBA;
+    }
+    .btn-read:hover {
+    background-color: #007bb5;
+    }
+    .pdf-viewer {
+    width: 100%;
+    height: 500px;
+    border: none;
+    margin-top: 20px;
+    }

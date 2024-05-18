@@ -44,7 +44,7 @@ export class ProjectService {
     return new Observable<Project[]>(observer => {
       this.firestore.getCollection({
         path: ['projects'],  // Make sure this matches exactly with your Firestore collection name
-        where: [new Where('postedBy', '==', userId), new Where('isPublic', '==', false)],
+        where: [new Where('postedBy', '==', userId)],
         onComplete: (result: any) => {
           const projects = result.docs.map((doc: any) => ({
             projectId: doc.id,

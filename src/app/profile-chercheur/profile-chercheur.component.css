@@ -2056,9 +2056,3 @@ p {
     text-align: center;
   }
 }
-h4{
-  cursor: pointer;
-}
-h4:hover{
-  text-decoration: underline;
-}

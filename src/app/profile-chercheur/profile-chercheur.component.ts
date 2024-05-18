@@ -1,29 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore'; // Import Firestore service
-import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth'; // Import Auth service
+import { UserDocument } from '../app.component';
 import { FirebaseTSStorage } from 'firebasets/firebasetsStorage/firebaseTSStorage';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { Router } from '@angular/router';
 
-export interface UserDocument {
-  publicName: string;
-  description: string;
-  userId: string;
-  imageUrl: string;
-  firstName: string;
-  lastName: string;
-  university: string;
-  email: string;
-  specialization: string;
-  lab: string;
-  phone: string;
-}
-
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  selector: 'app-profile-chercheur',
+  templateUrl: './profile-chercheur.component.html',
+  styleUrls: ['./profile-chercheur.component.css']
 })
-export class UserProfileComponent implements OnInit {
+export class ProfileChercheurComponent implements OnInit {
   userProfileData: UserDocument | null = null;
   firstNameInput: string = '';
   lastNameInput: string = '';
@@ -34,7 +21,7 @@ export class UserProfileComponent implements OnInit {
   phoneInput: string = '';
   storage: FirebaseTSStorage;
   showProfile: boolean = false; // Add this flag
-  displayProjects: boolean = false; // Initialize with a default value
+
   firestore: FirebaseTSFirestore;
   auth: FirebaseTSAuth;
 
@@ -92,7 +79,7 @@ export class UserProfileComponent implements OnInit {
         data: userDataToUpdate,
         onComplete: () => {
           console.log('User profile updated successfully!');
-          this.fetchUserProfileData(userId); // Refresh profile data after update
+          this.fetchUserProfileData(userId);
         }
       });
     }
@@ -107,7 +94,7 @@ export class UserProfileComponent implements OnInit {
       // Upload file to Firebase Storage
       this.storage.upload({
         uploadName: file.name,
-        path: ['profile-images', user.uid], // Providing path as an array of strings
+        path: ['profile-images', user.uid],
         data: {
           data: file,
           metadata: { /* Optional metadata */ }
@@ -143,13 +130,5 @@ export class UserProfileComponent implements OnInit {
 
   showUserProfile() {
     this.showProfile = true;
-  }
-  displayProfileChercheur: boolean = false;
-
-  toggleProfileChercheur(): void {
-    this.displayProfileChercheur = !this.displayProfileChercheur;
-  }
-  toggleProjects() {
-    this.displayProjects = !this.displayProjects;
   }
 }

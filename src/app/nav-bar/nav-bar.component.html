@@ -1,11 +1,9 @@
-<div id="nav-bar" style="z-index: 1;">
+<div id="nav-bar">
   <div id="nav-bar-content">
-      <div id="nav-bar-right">
-          <div *ngIf="!loggedIn()" (click)="onLoginClick()" class="nav-bar-items">Login</div>
-          <div *ngIf="loggedIn() && userHasProfile" class="nav-bar-items" >
-            <a routerLink="/profil"> Hello, {{getUsername()}} </a>
-          </div>
-          <div *ngIf="loggedIn()" (click)="onLogoutClick()" class="nav-bar-items" >Logout</div>
-      </div>
+    <div class="nav-bar-items" *ngIf="!loggedIn()" (click)="onLoginClick()">Login</div>
+    <div class="nav-bar-items" *ngIf="loggedIn() && userHasProfile">
+      <a routerLink="/profil">Hello, {{ getUsername() }}</a>
+    </div>
+    <div class="nav-bar-items" *ngIf="loggedIn()" (click)="onLogoutClick()">Logout</div>
   </div>
 </div>
