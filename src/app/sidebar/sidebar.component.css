@@ -165,24 +165,25 @@
   }
 }
 .dropDown {
-  background-color: #465779;
-  padding: 12px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 5px;
-  margin-left: 35px;
+  background-color: #465779; /* Change to a more vibrant blue */
+  padding: 10px; /* Add padding for space inside the div */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-top: 10px; /* Space above the dropdown */
+  margin-left: 10px; /* Move the dropdown to the right */
+  margin-bottom: 10px;
 }
 
 .dropDown a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 8px 10px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #fff; /* White text color */
+  text-decoration: none; /* Remove default underline */
+  display: block; /* Each link on a new line */
+  padding: 10px 15px; /* Increased padding for better spacing */
+  border-radius: 5px; /* Slightly rounded corners for links */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for hover effects */
 }
 
 .dropDown a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff; /* Darker text color on hover */
+  background-color: rgba(255, 255, 255, 0.2); /* Lighter background on hover */
+  color: #ffffff; /* White text color on hover */
 }

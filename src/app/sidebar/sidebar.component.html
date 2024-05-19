@@ -21,9 +21,9 @@
       <li class="item">
         <a (click)="toggleDropdown()"><i class="fas fa-project-diagram"></i> Gestion Publication</a>
         <div *ngIf="isDropdownOpen" class="dropDown">
-          <a routerLink="/gestion-projet" >Ajouter Publication</a>
-          <a routerLink="/listprojet">List Publication</a>
-          <a routerLink="/projet-public">Publication Public</a>
+          <a routerLink="/gestion-projet" class="fas fa-plus-circle"> Ajouter Publication</a>
+          <a routerLink="/listprojet" class="fas fa-th-list"> List Publication</a>
+          <a routerLink="/projet-public" class="fas fa-list-alt"> Publication Public</a>
         </div>
       </li>
 
