@@ -1,52 +1,30 @@
-<div id="profile" [ngClass]="{'active' : show,'idle':!show}" *ngIf="userJustSignedUp && !formSubmitted">
-  <div class="image">
-    <img src="assets/trah.jpg" alt="profile" class="profile-image">
-  </div>
-  <div id="profile-content" >
-    <div class="input-group">
-      <h1 class="title" style="text-align: center;">Inscription au ExploraLab</h1>
-      <div class="input-group" style="display: flex; align-items: center;">
-        <i class="material-icons" style="color: white;">person</i>
-        <input #firstNameInput class="input" placeholder="Nom" style="width: 90%;">
-      </div>
-      <div class="input-group" style="display: flex; align-items: center;">
-        <i class="material-icons" style="color: white;">person_outline</i>
-        <input #lastNameInput class="input" placeholder="Prénom" style="width: 90%;">
-      </div>
-      <div class="input-group" style="display: flex; align-items: center;">
-        <i class="material-icons" style="color: white;">school</i>
-        <input #universityInput class="input" placeholder="Etablissement universitaire" style="width: 90%;">
-      </div>
-      <div class="input-group" style="display: flex; align-items: center;">
-        <i class="material-icons" style="color: white;">email</i>
-        <input #emailInput class="input" type="email" placeholder="{{ userEmail }}" style="width: 90%;">
-      </div>
-      <div class="input-group" style="display: flex; align-items: center;">
-        <i class="material-icons" style="color: white;">science</i>
-        <input #specializationInput class="input" placeholder="Spécialité" style="width: 90%;">
-      </div>
-      <div class="input-group" style="display: flex; align-items: center;">
-        <i class="material-icons" style="color: white;">biotech</i>
-        <input #labInput class="input" placeholder="Nom de laboratoire de recherche" style="width: 90%;">
-      </div>
-      <div class="input-group" style="display: flex; align-items: center;">
-        <i class="material-icons" style="color: white;">phone</i>
-        <input #phoneInput class="input" placeholder="Numéro de téléphone" style="width: 90%;">
-      </div>
-      <div class="input-group" style="display: flex; align-items: center;">
-        <i class="material-icons" style="color: white;">info</i>
-        <textarea #aboutMeInput class="input" placeholder="A propos" style="width: 90%;"></textarea>
-      </div>
-      <!-- Image upload -->
-      <div class="input-group file-input-container">
-        <label for="image-upload" class="file-input-label">
-          <i class="material-icons" style="color: white;">image</i>
-        </label>
-        <input #imageInput id="image-upload" type="file" (change)="onImageSelected(imageInput)" accept="image/*" class="input-file" style="width: 50%;">
-      </div>
-      <div style="text-align: center;">
-        <button (click)="onContinueClick(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput, aboutMeInput); formSubmitted = true" class="btn btn-primary">Continuer</button>
-      </div>
+<div id="profile" [ngClass]="{'active' : show,'idle':!show}">
+  <div id="profile-content">
+    <div class="form-group">
+      <input #firstNameInput class="form-control" placeholder="Nom">
+      <input #lastNameInput class="form-control" placeholder="Prénom">
     </div>
+    <div class="form-group">
+      <input #universityInput class="form-control" placeholder="Etablissement universitaire">
+      <input #emailInput class="form-control" type="email" placeholder="Adresse Email">
+    </div>
+    <div class="form-group">
+      <input #specializationInput class="form-control" placeholder="Spécialité">
+      <input #labInput class="form-control" placeholder="Nom de laboratoire de recherche">
+    </div>
+    <div class="form-group">
+      <input #phoneInput class="form-control" placeholder="Numéro de téléphone">
+    </div>
+    <!-- Image upload -->
+    <div class="form-group file-input-container">
+      <label for="image-upload" class="file-input-label">
+        <i class="material-icons">image</i>
+        <span>Choisir une image</span>
+      </label>
+      <input #imageInput id="image-upload" type="file" (change)="onImageSelected(imageInput)" accept="image/*" class="form-control-file">
+    </div>
+
+    <!-- Continue button -->
+    <button (click)="onContinueClick(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput)" class="btn btn-primary">Continuer</button>
   </div>
 </div>
