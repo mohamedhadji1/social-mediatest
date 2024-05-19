@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
       <input #universityInput class="form-control" placeholder="Etablissement universitaire">
-      <input #emailInput class="form-control" type="email" placeholder="Adresse Email">
+      <input #emailInput class="form-control" type="email" placeholder="{{ userEmail }}">
     </div>
     <div class="form-group">
       <input #specializationInput class="form-control" placeholder="Spécialité">
@@ -14,6 +14,9 @@
     </div>
     <div class="form-group">
       <input #phoneInput class="form-control" placeholder="Numéro de téléphone">
+    </div>
+    <div class="form-group">
+      <textarea #aboutMeInput class="form-control" placeholder="A propos"></textarea>
     </div>
     <!-- Image upload -->
     <div class="form-group file-input-container">
@@ -23,8 +26,6 @@
       </label>
       <input #imageInput id="image-upload" type="file" (change)="onImageSelected(imageInput)" accept="image/*" class="form-control-file">
     </div>
-
-    <!-- Continue button -->
-    <button (click)="onContinueClick(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput)" class="btn btn-primary">Continuer</button>
+    <button (click)="onContinueClick(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput, aboutMeInput)" class="btn btn-primary">Continuer</button>
   </div>
 </div>

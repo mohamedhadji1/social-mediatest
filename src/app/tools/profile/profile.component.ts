@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { FirebaseTSStorage } from 'firebasets/firebasetsStorage/firebaseTSStorage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,8 +15,8 @@ export class ProfileComponent implements OnInit {
   auth: FirebaseTSAuth;
   storage: FirebaseTSStorage;
   selectedImage: File | null = null;
-
-  constructor() {
+  userEmail: string = '';
+  constructor(private router: Router) {
     this.firestore = new FirebaseTSFirestore();
     this.auth = new FirebaseTSAuth();
     this.storage = new FirebaseTSStorage();
@@ -23,6 +24,14 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.auth.getAuth().onAuthStateChanged(user => {
+      if (user) {
+        this.userEmail = user.email || ''; 
+        console.log('User signed in:', user.uid, user.email);
+      } else {
+        console.log('No user is signed in.');
+      }
+    });
   }
 
   onImageSelected(imageInput: HTMLInputElement) {
@@ -39,7 +48,8 @@ export class ProfileComponent implements OnInit {
     specializationInput: HTMLInputElement,
     labInput: HTMLInputElement,
     phoneInput: HTMLInputElement,
-    imageInput: HTMLInputElement
+    imageInput: HTMLInputElement,
+    aboutMeInput: HTMLTextAreaElement
   ) {
     let firstName = firstNameInput.value;
     let lastName = lastNameInput.value;
@@ -48,7 +58,7 @@ export class ProfileComponent implements OnInit {
     let specialization = specializationInput.value;
     let lab = labInput.value;
     let phone = phoneInput.value;
-
+    let aboutMe = aboutMeInput.value;
     const auth = this.auth.getAuth();
     if (auth !== null) {
       const currentUser = auth.currentUser;
@@ -73,11 +83,12 @@ export class ProfileComponent implements OnInit {
                   lab: lab,
                   phone: phone,
                   imageUrl: downloadUrl,
+                  aboutMe: aboutMe,
                   role: 'chercheur'
                 },
                 onComplete: (docId) => {
                   alert("Profile Created");
-                  this.resetForm(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput);
+                  this.resetForm(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput,aboutMeInput);
                 },
                 onFail: (err) => {
                   // Handle failure
@@ -95,11 +106,13 @@ export class ProfileComponent implements OnInit {
               email: email,
               specialization: specialization,
               lab: lab,
-              phone: phone
+              phone: phone,
+              aboutMe: aboutMe
             },
             onComplete: (docId) => {
               alert("Profile Created");
-              this.resetForm(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput);
+              this.resetForm(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput,aboutMeInput);
+              this.router.navigate(['/home']);
             },
             onFail: (err) => {
               // Handle failure
@@ -122,7 +135,9 @@ export class ProfileComponent implements OnInit {
     specializationInput: HTMLInputElement,
     labInput: HTMLInputElement,
     phoneInput: HTMLInputElement,
-    imageInput: HTMLInputElement
+    imageInput: HTMLInputElement,
+    aboutMeInput: HTMLTextAreaElement,
+
   ) {
     firstNameInput.value = "";
     lastNameInput.value = "";
@@ -132,6 +147,7 @@ export class ProfileComponent implements OnInit {
     labInput.value = "";
     phoneInput.value = "";
     imageInput.value = "";
+    aboutMeInput.value = "";
     this.selectedImage = null;
   }
 }
