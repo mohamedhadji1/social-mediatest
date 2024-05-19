@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.auth.getAuth().onAuthStateChanged(user => {
       if (user) {
-        this.userEmail = user.email || ''; 
+        this.userEmail = user.email || '';
         console.log('User signed in:', user.uid, user.email);
       } else {
         console.log('No user is signed in.');
@@ -51,6 +51,10 @@ export class ProfileComponent implements OnInit {
     imageInput: HTMLInputElement,
     aboutMeInput: HTMLTextAreaElement
   ) {
+    if (!firstNameInput.value || !lastNameInput.value || !universityInput.value || !emailInput.value || !specializationInput.value || !labInput.value || !phoneInput.value || !imageInput.value || !aboutMeInput.value) {
+      alert("All fields are required.");
+      return;
+    }
     let firstName = firstNameInput.value;
     let lastName = lastNameInput.value;
     let university = universityInput.value;

@@ -1,29 +1,35 @@
 <div id="profile" [ngClass]="{'active' : show,'idle':!show}">
   <div id="profile-content">
+    <h2 class="form-header">Ajouter un Chercheur</h2>
     <div class="form-group">
       <input #firstNameInput class="form-control" placeholder="Nom">
+      <i class="fa fa-user icon-right"></i>
       <input #lastNameInput class="form-control" placeholder="Prénom">
+      <i class="fa fa-user icon-right"></i>
     </div>
     <div class="form-group">
       <input #universityInput class="form-control" placeholder="Etablissement universitaire">
+      <i class="fa fa-university icon-right"></i>
       <input #emailInput class="form-control" type="email" placeholder="{{ userEmail }}">
+      <i class="fa fa-envelope icon-right"></i>
     </div>
     <div class="form-group">
       <input #specializationInput class="form-control" placeholder="Spécialité">
+      <i class="fa fa-book-medical icon-right"></i>
       <input #labInput class="form-control" placeholder="Nom de laboratoire de recherche">
+      <i class="fa fa-flask icon-right"></i>
     </div>
     <div class="form-group">
       <input #phoneInput class="form-control" placeholder="Numéro de téléphone">
+      <i class="fa fa-phone icon-right"></i>
     </div>
     <div class="form-group">
       <textarea #aboutMeInput class="form-control" placeholder="A propos"></textarea>
+      <i class="fa fa-info-circle icon-right"></i>
     </div>
     <!-- Image upload -->
     <div class="form-group file-input-container">
-      <label for="image-upload" class="file-input-label">
-        <i class="material-icons">image</i>
-        <span>Choisir une image</span>
-      </label>
+      <label for="image-upload" class="file-input-label"><i class="fa fa-upload"> Choisir une photo</i></label>
       <input #imageInput id="image-upload" type="file" (change)="onImageSelected(imageInput)" accept="image/*" class="form-control-file">
     </div>
     <button (click)="onContinueClick(firstNameInput, lastNameInput, universityInput, emailInput, specializationInput, labInput, phoneInput, imageInput, aboutMeInput)" class="btn btn-primary">Continuer</button>

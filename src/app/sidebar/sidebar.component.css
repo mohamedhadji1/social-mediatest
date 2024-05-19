@@ -164,3 +164,25 @@
     right: 10px;
   }
 }
+.dropDown {
+  background-color: #465779;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+  margin-left: 35px;
+}
+
+.dropDown a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropDown a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff; /* Darker text color on hover */
+}

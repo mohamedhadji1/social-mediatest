@@ -3,11 +3,10 @@
   top: 0;
   right: 0;
   height: 100vh;
-  background-color: rgb(29, 29, 29);
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
   z-index: 9;
-  transition-duration: .5s;
+  transition: width 0.5s ease-in-out;
   overflow: hidden;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,20 +24,83 @@
   width: 100%;
   max-width: 500px;
   padding: 2em;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa); /* Gradient background */
+  border-radius: 20px; /* More rounded corners */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Stronger shadow */
+  text-align: center; /* Center align text */
+}
+
+.form-header {
+  margin-bottom: 1.5em;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.form-group {
+  margin-bottom: 1.5em; /* Add more spacing between form groups */
 }
 
 input, textarea {
-  width: 100%;
+  width: 60%;
   padding: 1em;
-  border-radius: 1em;
-  margin-bottom: .5em;
-  resize: none;
-  outline: none;
-  border: 1px solid gray;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+  border-radius: 10px;
+  margin-bottom: 0.5em;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+  border-color: #007bff; /* Highlight focus */
+}
+
+.file-input-container {
+  text-align: left; /* Align file input label to the left */
+}
+
+.file-input-label {
+  cursor: pointer;
+  color: #007bff;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: background-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.file-input-label:hover {
+  background-color: #e2e6ea;
+
+}
+
+#image-upload {
+  display: none; /* Hide the default file input */
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #007bff, #0056b3); /* Gradient background */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0056b3, #004494);
+  transform: scale(1.05); /* Slightly enlarge button on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.btn-primary:active {
+  background: linear-gradient(135deg, #004494, #003366);
+  transform: scale(1); /* Reset scale on click */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reset shadow on click */
 }
