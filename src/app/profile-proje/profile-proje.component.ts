@@ -17,6 +17,7 @@ export class ProfileProjeComponent {
   projects: Project[] = [];
   currentUserId: string = '';
   private auth = new FirebaseTSAuth();
+  totalProjects: number = 0;  // Variable to store the total number of projects
   userProfileData: UserDocument | null = null;
   activeProject: Project | null = null;
   constructor(
@@ -36,14 +37,12 @@ export class ProfileProjeComponent {
   ngOnInit() {
     this.auth.getAuth().onAuthStateChanged((user) => {
       if (user) {
-        console.log("aaaaaaaaaaaaaaaaa:", user.uid);
         this.currentUserId = user.uid;
         this.fetchUserProfileData(user.uid);
-        this.loadUserProjects();  // Move this inside the callback
+        this.loadUserProjects();
+        this.loadTotalProjects();  // Load total projects
       } else {
         console.error("No user is currently authenticated.");
-        this.currentUserId = 'defaultUserId';  // Consider handling this case more gracefully
-        this.loadUserProjects();  // Consider if you want to load projects when no user is authenticated
       }
     });
   }
@@ -104,6 +103,14 @@ export class ProfileProjeComponent {
     } else {
       throw new Error('Invalid timestamp object');
     }
+  }
+  loadTotalProjects(): void {
+    this.projectService.getTotalProjectsByUserId(this.currentUserId).subscribe({
+      next: (total: number) => {
+        this.totalProjects = total;
+      },
+      error: (err) => console.error('Error fetching total projects:', err)
+    });
   }
 }
 

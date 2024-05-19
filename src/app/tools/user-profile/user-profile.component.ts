@@ -1,3 +1,4 @@
+import { ProjectService } from './../../../services/Project.service';
 import { Component, OnInit } from '@angular/core';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore'; // Import Firestore service
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth'; // Import Auth service
@@ -16,6 +17,7 @@ export interface UserDocument {
   specialization: string;
   lab: string;
   phone: string;
+  aboutMe: string;
 }
 
 @Component({
@@ -32,15 +34,19 @@ export class UserProfileComponent implements OnInit {
   specializationInput: string = '';
   labInput: string = '';
   phoneInput: string = '';
+  aboutMeInput: string = '';
   storage: FirebaseTSStorage;
   showProfile: boolean = false; // Add this flag
   displayProjects: boolean = false; // Initialize with a default value
   firestore: FirebaseTSFirestore;
   auth: FirebaseTSAuth;
-
-  constructor(private router: Router) {
-    this.firestore = new FirebaseTSFirestore(); // Initialize Firestore service
-    this.auth = new FirebaseTSAuth(); // Initialize Auth service
+  totalProjects: number = 0;  // Variable to store the total number of projects
+  constructor(
+    private router: Router,
+    private projectService: ProjectService // Inject ProjectService
+  ) {
+    this.firestore = new FirebaseTSFirestore();
+    this.auth = new FirebaseTSAuth();
     this.storage = new FirebaseTSStorage();
   }
 
@@ -49,12 +55,24 @@ export class UserProfileComponent implements OnInit {
       if (user) {
         console.log("User signed in:", user.uid, user.email);
         this.fetchUserProfileData(user.uid);
+        this.loadTotalProjects(user.uid);
       } else {
         console.error("No user is currently authenticated.");
       }
     });
   }
-
+  loadTotalProjects(userId: string): void {
+    this.projectService.getTotalProjectsByUserId(userId).subscribe({
+      next: (total: number) => {
+        console.log(`Total projects loaded: ${total}`);
+        this.totalProjects = total;
+      },
+      error: (err) => {
+        console.error('Error fetching total projects:', err);
+        // Additional error handling or retry logic can be added here
+      }
+    });
+  }
   fetchUserProfileData(userId: string) {
     this.firestore.getDocument({
       path: ['Users', userId],

@@ -158,4 +158,22 @@ export class ProjectService {
       });
     });
   }
+  getTotalProjectsByUserId(userId: string): Observable<number> {
+    return new Observable<number>(observer => {
+      this.firestore.getCollection({
+        path: ['projects'],
+        where: [new Where('postedBy', '==', userId)],
+        onComplete: (result: any) => {
+          const totalProjects = result.docs.length; // Count of projects
+          console.log(`Total projects submitted by user ${userId}:`, totalProjects);
+          observer.next(totalProjects);
+          observer.complete();
+        },
+        onFail: (error: any) => {
+          console.error(`Error fetching projects for user ${userId}:`, error);
+          observer.error(error);
+        }
+      });
+    });
+  }
 }

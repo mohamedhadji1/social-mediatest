@@ -3,42 +3,77 @@
     top: 0;
     right: 0;
     height: 100vh;
-    background-color: rgb(29, 29, 29);
-    z-index: 9;
-    transition-duration: .5s;
+    z-index: 1000; /* Ensuring it stays on top */
+    transition: all 0.5s ease; /* Smooth transition for all properties */
     overflow: hidden;
-
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: -5px 0 15px rgba(0,0,0,0); /* Shadow effect removed */
 }
 
 .active {
-    width: 100vw;
+    width: 100vw; /* Full view width when active */
 }
 
 .idle {
-    width: 0;
+    width: 0; /* Completely hidden when idle */
 }
 
 #profile-content {
-    width: 100%;
-    max-width: 500px;
-    padding: 2em;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+  width: 900px;
+  padding: 2em;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #659dfd; /* Changed to a light blue for a brighter and more inviting appearance */
+  color: #333; /* Dark text for contrast on light blue background */
+  box-shadow: 0 4px 12px rgba(0,0,0,0); /* Shadow effect removed */
+  position: fixed; /* Positioning it to the right */
+  right: 0; /* Align to the right side of the page */
+  display: none; /* Initially hidden, changed from 'relative' to 'none' to ensure it does not display */
 }
 
 input, textarea {
     width: 100%;
     padding: 1em;
-    border-radius: 1em;
-    margin-bottom: .5em;
-    resize: none;
-    outline: none;
-    border: 1px solid gray;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    border-radius: 10px; /* Smooth rounded corners for a modern look */
+    margin-bottom: 1em; /* Adequate spacing between form elements */
+    resize: none; /* Disable resizing to maintain uniformity */
+    outline: none; /* Remove default focus outline */
+    border: 2px solid #007BFF; /* Solid, slightly thicker border with a more vibrant color */
+    background-color: #ffffff; /* Pure white background for better contrast */
+    color: #333; /* Darker text color for enhanced readability */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for visual feedback */
+}
+input:focus, textarea:focus {
+    border-color: #669; /* Updated highlight color on focus for a more appealing look */
+    box-shadow: 0 0 10px rgba(78, 78, 112, 0); /* Glowing effect on focus removed */
+}
+
+.image {
+  width: 55%; /* Adjusted width to not cover the entire container */
+  height: auto; /* Height set to auto to maintain aspect ratio */
+  position: absolute; /* Using absolute positioning */
+  left: 0; /* Positioned at the leftmost side of the container */
+}
+.profile-image {
+  width: 100%;
+  height: auto;
+}
+
+.btn-primary {
+  background-color: #0056b3; /* A deeper blue for a more professional and modern look */
+  color: #ffffff; /* Maintaining light text for contrast */
+  padding: 0.75em 1.5em; /* More padding for a better touch area */
+  border: none; /* Removing border for a cleaner look */
+  border-radius: 8px; /* Rounded corners for a softer, modern appearance */
+  font-size: 1.1em; /* Slightly larger font for better readability */
+  text-transform: uppercase; /* Uppercase text for a more impactful button label */
+  box-shadow: 0 4px 8px rgba(0, 56, 179, 0.2); /* Subtle shadow for depth */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #003366; /* Darker blue on hover/focus for interactive feedback */
+  box-shadow: 0 6px 12px rgba(0, 51, 102, 0.3); /* Increased shadow on hover/focus for more depth */
 }

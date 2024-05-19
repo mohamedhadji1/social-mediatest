@@ -107,4 +107,5 @@ export interface UserDocument {
   lab: string;
   phone: string;
   role: string;
+  aboutMe?: string;
 }

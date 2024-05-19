@@ -49,96 +49,38 @@
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
           <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello {{userProfileData?.lastName}}</h1>
-            <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+            <label for="profile-picture-input">
+              <img *ngIf="userProfileData?.imageUrl" [src]="userProfileData?.imageUrl" class="rounded-circle" [style.width.px]="100" [style.height.px]="100" >
+            </label>
+            <input id="profile-picture-input" type="file" style="display: none" (change)="updateProfilePicture($event)" accept="image/*">
+            <h1 class="display-2 text-white">{{userProfileData?.firstName}} {{userProfileData?.lastName}}</h1>
+            <h3 style="color: white;">{{userProfileData?.university}} | {{userProfileData?.lab}} | {{userProfileData?.phone}} | {{userProfileData?.specialization}}</h3>
+            <p class="text-white mt-0 mb-5">'{{userProfileData?.aboutMe}}'</p>
           </div>
         </div>
       </div>
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--7">
-      <div class="row">
-        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-          <div class="card card-profile shadow">
-            <div class="row justify-content-center">
-              <div class="col-lg-3 order-lg-2">
-                <div class="card-profile-image">
-                  <label for="profile-picture-input">
-                    <img *ngIf="userProfileData?.imageUrl" [src]="userProfileData?.imageUrl" class="rounded-circle" [style.width.px]="150" [style.height.px]="200" >
-                  </label>
-                  <input id="profile-picture-input" type="file" style="display: none" (change)="updateProfilePicture($event)" accept="image/*">
-                </div>
-              </div>
-            </div>
-            <div class="card-body pt-0 pt-md-4" style="margin-top: 18px;">
-              <div class="row">
-                <div class="col">
-                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                  </div>
-                </div>
-              </div>
-              <div class="text-center">
-                <h3>
-                  {{ userProfileData?.email }}
-                </h3>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>first name : {{userProfileData?.firstName}}
-                </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>last name : {{userProfileData?.lastName}}
-                </div>
-                <div>
-                  <i class="ni education_hat mr-2"></i>University: {{userProfileData?.university}}
-                </div>
-                <div>
-                  <i class="ni education_hat mr-2"></i>Lab: {{userProfileData?.lab}}
-                </div>
-                <div>
-                  <i class="ni education_hat mr-2"></i>Phone: {{userProfileData?.phone}}
-                </div>
-                <div>
-                  <i class="ni education_hat mr-2"></i>specialization: {{userProfileData?.specialization}}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="col-xl-8 order-xl-1">
+      <div class="row justify-content-center">
+        <div class="col-xl-8">
           <div class="card bg-secondary shadow">
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
-                <div class="col-8" style="display: flex;">
-                  <h4 (click)="toggleProfileChercheur()" style="cursor: pointer; margin-left: 10px;">My account</h4>
-                  <h4 (click)="toggleProjects()" style="cursor: pointer; margin-left: 10px; ">My projects</h4>
-                </div>
-              </div>
-            </div>
-            <div class="card-body" *ngIf="displayProfileChercheur">
-              <app-profile-chercheur></app-profile-chercheur>
-            </div>
-            <div class="card-body" *ngIf="displayProjects">
-              <app-profile-proje></app-profile-proje>
-            </div>
-          </div>
-        </div> -->
-        <div class="col-xl-8 order-xl-1">
-          <div class="card bg-secondary shadow">
-            <div class="card-header bg-white border-0">
-              <div class="row align-items-center">
-                <div class="col-8" style="display: flex;">
-                  <h4 
+                <div class="col-12 d-flex justify-content-center">
+                  <h4
                     (click)="toggleProfileChercheur()"
-                    [ngClass]="{'selected-tab': displayProfileChercheur, 'unselected-tab': !displayProfileChercheur}" 
-                    style="cursor: pointer; margin-left: 10px;"
+                    [ngClass]="{'selected-tab': displayProfileChercheur, 'unselected-tab': !displayProfileChercheur}"
+                    style="cursor: pointer; margin-right: 10px;"
                   >
                     My account
                   </h4>
-                  <h4 
+                  <h4
                     (click)="toggleProjects()"
-                    [ngClass]="{'selected-tab': displayProjects, 'unselected-tab': !displayProjects}" 
+                    [ngClass]="{'selected-tab': displayProjects, 'unselected-tab': !displayProjects}"
                     style="cursor: pointer; margin-left: 10px;"
                   >
-                    My projects
+                    My projects ({{ totalProjects }})
                   </h4>
                 </div>
               </div>
@@ -151,7 +93,6 @@
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   </div>
