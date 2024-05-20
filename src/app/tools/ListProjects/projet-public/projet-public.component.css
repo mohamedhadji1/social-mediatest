@@ -1,78 +1,107 @@
+/* Container for the public projects page */
 .public-projects-container {
-  width: 50%;
-  margin: auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.project-card {
-  background-color: white;
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 15px;
-  margin-top: 10px;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  position: relative;
+  font-family: Arial, sans-serif;
 }
 
+.public-projects-container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Project card styling */
+.project-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  transition: box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Project header */
 .project-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 }
 
-.project-card h2 {
-  color: #333;
-  font-size: 20px;
+.project-header h2 {
   margin: 0;
+  font-size: 1.3em;
+  color: #007bff;
 }
 
-.project-card p {
-  color: #666;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-top: 5px;
-}
-
-.project-card a {
-  display: inline-block;
-  padding: 8px 12px;
-  background-color: #007BFF;
-  color: white;
+.project-header h2 a {
   text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  color: inherit;
+  transition: color 0.3s ease;
 }
 
-.project-card a:hover {
-  background-color: #0056b3;
+.project-header h2 a:hover {
+  color: #0056b3;
 }
 
-.authors ul {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 5px;
+/* Project description */
+.project-card p {
+  color: #555;
+  line-height: 1.6;
+  margin: 8px 0;
 }
 
-.authors li {
-  padding: 2px 0;
-}
-
-.menuedit {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
-.menu-icon {
-  cursor: pointer;
-  color: #007BFF;
-  font-size: 24px;
-}
+/* User details */
 .user-image {
-  width: 50px; /* Set both width and height to the same value */
-  height: 50px;
   border-radius: 50%;
-  object-fit: cover; /* This ensures the image covers the area without distorting aspect ratio */
+  margin-right: 10px;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+}
+
+.project-card p img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.project-card p span {
+  vertical-align: middle;
+}
+
+/* Date */
+.project-card p {
+  color: #888;
+}
+
+/* Authors section */
+.authors-list {
+  list-style: none;
+  padding: 0;
+}
+
+.authors-list li {
+  background: #eee;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 5px 0;
+  color: #333;
+}
+
+.authors-list li:hover {
+  background: #ddd;
+}
+
+/* If no projects are available */
+.public-projects-container p {
+  text-align: center;
+  color: #777;
+  font-size: 1.1em;
+  margin-top: 40px;
 }
