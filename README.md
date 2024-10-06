@@ -7,4 +7,3 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 2- nmp i 
 3- npm i firebasets@latest
 4- ng s
-aaa
